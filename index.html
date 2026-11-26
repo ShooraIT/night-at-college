@@ -49,14 +49,14 @@ header{background:#231710e8}header .wrap{min-height:60px}.mark{background:linear
 <body>
 <header><div class="wrap"><div class="brand"><span class="mark" aria-hidden="true">◒</span> Ночная лаборатория</div><div class="progress"><span id="progress">0 из 3 готово</span><span class="ticks" aria-hidden="true"><i></i><i></i><i></i></span></div></div></header>
 <main class="wrap">
-<section class="hero"><div class="hero-copy"><p class="eyebrow">Практикум по веб-разработке</p><h1>Ночь <span>в колледже</span></h1><p>Зажги окна ночного колледжа с помощью кода. Если застрянешь, Лис подскажет, что писать дальше.</p><a class="hero-link" href="#workbench">К заданиям</a></div><img class="hero-guide" src="fox-guide.png" width="416" height="416" alt=""></section>
+<section class="hero"><div class="hero-copy"><p class="eyebrow">Практикум по веб-разработке</p><h1>Ночь <span>в колледже</span></h1><p>Зажги окна ночного колледжа с помощью кода. Если застрянешь, КЭШ подскажет, что писать дальше.</p><a class="hero-link" href="#workbench">К заданиям</a></div><img class="hero-guide" src="fox-guide.png" width="416" height="416" alt=""></section>
 <h2 class="lab-title" id="workbench">Рабочее место</h2>
 <div class="lab">
 <section class="card instructions"><div class="bar"><h3>Задания</h3><span class="badge" id="chapter"></span></div><div class="task">
 <nav class="steps" aria-label="Этапы практикума"><button type="button" class="step">HTML</button><button type="button" class="step">CSS</button><button type="button" class="step">JS</button></nav>
 <h4 id="task-title"></h4><p id="task-text"></p>
 <details class="guide" id="hint">
-  <summary><span class="guide-avatar" aria-hidden="true"></span><span>Спросить Лиса</span></summary>
+  <summary><span class="guide-avatar" aria-hidden="true"></span><span>Спросить КЭШа</span></summary>
   <div class="guide-body">
     <div aria-live="polite">
       <span class="guide-step" id="guide-step"></span>
@@ -224,7 +224,7 @@ const guideSteps = [
   [
     {title:'Открой CSS и перейди в конец', instruction:'Нажми вкладку CSS над редактором. Прокрути код до конца и найди комментарий ниже. Допиши новое правило после него, за пределами предыдущих фигурных скобок.', code:'/* Добавь стиль для .window.lit */'},
     {title:'Напиши правило для горящего окна', instruction:'Вставь этот блок в конец CSS. Слитный селектор .window.lit выбирает окно, у которого есть оба класса. Свойство background задаёт жёлтый фон, а box-shadow добавляет свечение.', code:'.window.lit {\n  background: #ffc85a;\n  box-shadow: 0 0 15px #ffc85a80;\n}'},
-    {title:'Проверь свет', instruction:'Нажми «Проверить». Лис проверит, меняется ли цвет окон при добавлении класса lit. При обычном запуске окна пока тёмные — выключатель подключим на следующем этапе.', code:''}
+    {title:'Проверь свет', instruction:'Нажми «Проверить». КЭШ проверит, меняется ли цвет окон при добавлении класса lit. При обычном запуске окна пока тёмные — выключатель подключим на следующем этапе.', code:''}
   ],
   [
     {title:'Найди кнопку и окна', instruction:'Открой вкладку JS. Замени стартовый комментарий этим кодом. Первое выражение находит кнопку «Свет», второе — список всех окон.', code:'const button =\n  document.querySelector("#switch");\nconst windows =\n  document.querySelectorAll(".window");'},
