@@ -8,24 +8,32 @@
 :root{color-scheme:dark;--paper:#0b0f16;--panel:#121923;--border:#26313e;--ink:#eef0e7;--quiet:#a5b1bc;--lime:#dcff72;--mono:Consolas,monospace}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,sans-serif}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--lime);outline-offset:3px}a{color:inherit}.wrap{max-width:1400px;margin:auto;padding:0 clamp(16px,4vw,64px)}
 header{border-bottom:1px solid var(--border)}header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:65px;gap:12px}.brand{font:700 15px var(--mono);display:flex;align-items:center;gap:10px}.mark{width:27px;height:27px;display:grid;place-items:center;background:var(--lime);color:#111809;border-radius:6px}.progress{font:14px var(--mono);color:var(--quiet);display:flex;gap:10px;align-items:center}.ticks{display:flex;gap:4px}.ticks i{display:block;width:13px;height:5px;background:#394453;border-radius:3px}.ticks i.done{background:var(--lime)}
-.hero{margin-top:26px;min-height:230px;border:1px solid #33394e;border-radius:16px;overflow:hidden;position:relative;background:radial-gradient(ellipse at 78% 110%,#33355c,transparent 58%),linear-gradient(110deg,#17192b,#151b31);display:flex;align-items:center}.hero-copy{position:relative;z-index:2;padding:28px clamp(20px,4vw,52px);max-width:660px}.eyebrow{font:700 12px var(--mono);color:var(--lime);letter-spacing:.13em;text-transform:uppercase;margin:0 0 10px}.hero h1{font-size:clamp(38px,6.2vw,78px);line-height:.99;letter-spacing:-.065em;margin:0 0 16px}.hero-copy>p:last-child{margin:0;color:#c4c8dc;max-width:39ch}.sky{position:absolute;inset:0 0 0 50%;overflow:hidden}.moon{position:absolute;width:68px;aspect-ratio:1;border-radius:100%;background:#e0debd;right:13%;top:17%;box-shadow:0 0 38px #e3e0bd48}.star{position:absolute;width:3px;height:3px;background:#e6e0c9;box-shadow:0 0 7px #eee}.star:nth-child(2){top:16%;left:20%}.star:nth-child(3){top:30%;left:48%}.star:nth-child(4){top:13%;right:8%}.star:nth-child(5){top:46%;right:5%}.school{position:absolute;right:10%;bottom:-6px;width:66%;height:53%;border-top:4px solid #535773;background:#1c233b;box-shadow:12px 14px 0 #101325;display:grid;grid-template-columns:repeat(6,1fr);gap:13px;padding:20px 15px}.school:before{content:"";position:absolute;bottom:100%;left:34%;width:32%;height:36px;background:#292d48;clip-path:polygon(50% 0,100% 100%,0 100%)}.school b{background:#333a53;border:2px solid #191e33;border-radius:2px}.school b:nth-child(3n+1),.school b:nth-child(8){background:#f3ce78;box-shadow:0 0 12px #efb75645}
+.hero{margin-top:26px;min-height:340px;border:1px solid #655066;border-radius:22px;overflow:hidden;position:relative;isolation:isolate;display:flex;align-items:center;background:#11152c url("campus-night.jpg") right center/cover no-repeat;box-shadow:0 18px 50px #08051290}
 .lab-title{margin:25px 0 11px;font-size:21px;letter-spacing:-.02em}.lab{display:grid;grid-template-columns:minmax(245px,.85fr) minmax(330px,1.45fr) minmax(265px,1fr);gap:12px;align-items:start}.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}.bar{min-height:52px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 13px}.bar h3{margin:0;font-size:14px}.badge{font:12px var(--mono);color:var(--quiet)}.task{padding:16px}.steps{display:flex;gap:6px;margin-bottom:16px}.step,.ghost,.tab{background:#18212d;color:var(--quiet);border:1px solid var(--border);border-radius:6px;padding:6px 9px;font-size:13px}.step[aria-pressed=true],.tab[aria-pressed=true]{color:var(--lime);background:#222c23;border-color:#637643}.step.complete::after{content:" ✓"}.task h4{margin:0 0 7px;font-size:20px;letter-spacing:-.025em}.task p{margin:0 0 13px;color:var(--quiet);font-size:14px}.task code{color:var(--lime);font-family:var(--mono)}details{font-size:14px;margin:12px 0;color:var(--quiet)}summary{cursor:pointer;color:var(--ink)}details p{padding-top:6px}.actions{display:flex;gap:6px;flex-wrap:wrap}.ghost:hover,.tab:hover,.step:hover{border-color:var(--lime);color:var(--ink)}.run{padding:7px 11px;border:0;border-radius:6px;background:var(--lime);color:#17200b;font-size:13px;font-weight:800;white-space:nowrap}.run:hover{background:#efffae}.run:disabled{opacity:.6}.editorBar{flex-wrap:wrap;padding-block:8px}.tabs{display:flex;gap:5px}.tab{font-family:var(--mono)}.gutter{margin:0;padding:12px 8px;text-align:right;color:#78899c;background:#0f151e;min-width:34px;overflow:hidden;user-select:none}.edit{display:flex;background:#0c1119;height:309px}.gutter,textarea{font:14px/22px var(--mono)}textarea{resize:none;min-width:0;flex:1;outline:none!important;border:0;border-radius:0;background:transparent;color:#e1edd8;padding:12px 10px;tab-size:2;white-space:pre;overflow:auto}textarea:focus{box-shadow:inset 0 0 0 1px #657d46}.foot{display:flex;justify-content:space-between;gap:6px;align-items:center;border-top:1px solid var(--border);padding:8px 10px;min-height:43px;font:12px var(--mono);color:var(--quiet)}.foot button{font-size:12px;padding:3px 7px}
 iframe{display:block;width:100%;height:247px;border:0;background:#101421}.console{border-top:1px solid var(--border);padding:8px 12px;height:105px;overflow:auto}.console h4{font-size:12px;margin:0 0 5px;color:var(--quiet)}.console pre{font:12px/1.5 var(--mono);margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:#c8d5e2}.check-result{min-height:2.8em;margin-top:12px!important}.check-result.good{color:var(--lime)}.check-result.bad{color:#ffc992}footer{padding:20px 0 28px;color:var(--quiet);font-size:13px}
 @media(max-width:1120px){.lab{grid-template-columns:1fr 1fr}.instructions{grid-column:1/-1}.task{padding:14px}.check-result:empty{min-height:0;margin:0!important}}
-@media(max-width:680px){.lab{grid-template-columns:1fr}.sky{left:28%;opacity:.42}.hero{min-height:214px}.hero-copy{padding-block:24px}.progress{font-size:12px}.ticks{display:none}.edit{height:270px}}
+@media(max-width:680px){.lab{grid-template-columns:1fr}.progress{font-size:12px}.ticks{display:none}.edit{height:270px}}
 /* The campus scene and the workshop share the same night palette. */
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0b1025eb,#10152d9c 46%,transparent 76%)}
+.hero-copy{position:relative;z-index:2;width:min(64%,650px);padding:34px clamp(24px,4vw,58px)}
+.eyebrow{display:inline-block;margin:0 0 14px;padding:5px 10px;border-radius:6px;background:#ffd487;color:#32203a;font:700 12px/1.45 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.hero h1{margin:0 0 16px;font-size:clamp(45px,6.5vw,87px);line-height:.91;letter-spacing:-.064em;color:#fff7e6;text-wrap:balance}
+.hero h1 span{display:block;color:#ffd58b}.hero-copy>p:last-of-type{max-width:37ch;color:#fff3de;margin:0}
+.hero-guide{position:absolute;z-index:1;width:clamp(220px,29vw,385px);height:auto;bottom:-28px;right:12%;filter:drop-shadow(0 14px 18px #140b1da0);pointer-events:none}
+.hero-link{display:inline-block;margin-top:19px;padding:7px 13px;border:1px solid #ffd58b92;border-radius:8px;background:#1b142add;color:#fff0d2;text-decoration:none;font-size:14px;font-weight:650}.hero-link:hover{background:#503154}
+.guide{margin:15px 0 13px;border-radius:12px;border:1px solid #dcaf77;background:#fff2d9;color:#332541;overflow:hidden}
+.guide summary{display:flex;align-items:center;gap:8px;padding:7px 9px;color:#362447;font-weight:760;list-style:none}.guide summary::-webkit-details-marker{display:none}.guide summary::after{content:"+";font:700 18px var(--mono);margin-left:auto;color:#754874}.guide[open] summary::after{content:"−"}.guide summary:focus-visible,.guide button:focus-visible{outline:2px solid #714582;outline-offset:-3px}
+.guide-avatar{flex:none;width:37px;height:37px;border-radius:50%;background:#ffcf92 url("fox-guide.png") 50% 8%/185% auto no-repeat;border:1px solid #c68b60}
+.guide-body{border-top:1px solid #e3c4a0;padding:10px;background-image:linear-gradient(#a07b6014 1px,transparent 1px),linear-gradient(90deg,#a07b6014 1px,transparent 1px);background-size:14px 14px}
+.task .guide-step{display:block;margin:0 0 5px;color:#694a6e;font:700 12px var(--mono)}.task .guide-title{display:block;color:#30243d;line-height:1.3;margin:0 0 4px}.task .guide p{padding:0;margin:0 0 8px;color:#48384f;line-height:1.42;font-size:13px}
+.guide pre{margin:0 0 9px;max-height:170px;padding:8px;overflow:auto;background:#251a3a;border-radius:7px;white-space:pre;font:12px/1.45 var(--mono);color:#fff1d3;scrollbar-color:#9677aa #261c36}.guide pre code{color:inherit}
+.guide-nav{display:flex;justify-content:space-between;gap:7px}.guide-nav button{border:1px solid #b98b83;border-radius:6px;background:#fff7e8;color:#4c3155;padding:4px 7px;font-size:12px;font-weight:700}.guide-nav button:hover:not(:disabled){background:#ffddb0}.guide-nav button:disabled{opacity:.55;cursor:default}
+.task .check-result{min-height:0;margin-bottom:0}.check-result:empty{display:none}
+@media(max-width:900px){.hero-guide{right:6%}}
+@media(max-width:680px){.hero{min-height:325px;align-items:start;background-position:67% center}.hero::before{background:linear-gradient(90deg,#0c1028ef 6%,#11152cbf 56%,#10152c46)}.hero-copy{width:100%;padding:22px 16px 21px}.hero h1{font-size:clamp(40px,9.3vw,61px)}.hero-copy>p:last-of-type{max-width:min(30ch,61%);font-size:14px}.hero-guide{right:-29px;bottom:-11px;width:clamp(155px,44vw,231px)}}
 :root{--paper:#0e0c20;--panel:#19152d;--border:#382d58;--ink:#f5f0ff;--quiet:#c2b7d7;--lime:#c9ff82;--pink:#ff9edb;--cyan:#8df4ff;--violet:#d5b1ff}
 body{background:radial-gradient(ellipse at 0 22%,#27164b 0,transparent 45%),radial-gradient(ellipse at 100% 65%,#211c53 0,transparent 54%),var(--paper);min-height:100vh}
 header{background:#110e24c9}header .wrap{min-height:60px}.mark{background:linear-gradient(145deg,var(--cyan),#bda1ff);color:#201036;box-shadow:0 0 14px #9b84ff65}.ticks i.done{background:var(--lime);box-shadow:0 0 8px #b8ff6f65}
-.hero{min-height:265px;isolation:isolate;border-color:#59428a;background:linear-gradient(102deg,#20143e 8%,#251449 48%,#302663 72%,#161638);box-shadow:0 18px 50px #07041880}
-.hero-copy{max-width:720px}.eyebrow{color:var(--cyan)}.hero h1 span{color:var(--pink);background:linear-gradient(90deg,#ffb4df 5%,#d6b0ff 56%,#95ecff);background-clip:text;-webkit-text-fill-color:transparent}.hero-copy>p:last-child{color:#e0d4f4}
-.sky{inset:0 0 0 43%;background:radial-gradient(ellipse at 60% 89%,#ac54d68f 0,transparent 52%);mask-image:linear-gradient(90deg,transparent,#000 12%)}
-.sky::before{content:"";position:absolute;width:126%;height:86%;left:0;top:-35%;border-radius:50%;transform:rotate(-19deg);background:conic-gradient(from 65deg,transparent 15%,#74e9f1a6 28%,#956bff5e 43%,#e259c36e 55%,transparent 72%);filter:blur(21px);opacity:.73}
-.sky::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 22% 28%,#f5baff 0 1px,transparent 2px),radial-gradient(circle at 33% 15%,#fff 0 1px,transparent 2px),radial-gradient(circle at 59% 32%,#a1edff 0 1px,transparent 2px),radial-gradient(circle at 89% 32%,#ffd7bd 0 1px,transparent 2px),radial-gradient(circle at 69% 13%,#ffc8ff 0 1px,transparent 2px);pointer-events:none}
-.moon{width:clamp(50px,6.5vw,95px);top:14%;right:16%;background:radial-gradient(circle at 40% 38%,#fff7df,#fdd796 70%);box-shadow:0 0 32px #ffc5939e,0 0 0 10px #ffc59314,0 0 0 22px #fcbfd310}
-.school{z-index:1;right:12%;width:63%;height:48%;border-top:4px solid #8f72be;background:linear-gradient(#30254b,#201632);box-shadow:14px 8px 0 #160f27;gap:11px;padding:15px 16px 16px}
-.school::before{height:32px;background:linear-gradient(#73529e,#493268)}.school::after{content:"";position:absolute;bottom:100%;left:50%;translate:-50% -5px;width:10px;aspect-ratio:1;border-radius:50%;background:#ffe1b2;box-shadow:0 0 10px #ffd096}
-.school b{border:2px solid #231632;background:#503969}.school b:nth-child(4n+1){background:#ffdb83;box-shadow:0 0 13px #ffc45183}.school b:nth-child(4n+3){background:#c59dff;box-shadow:0 0 11px #a86bff82}.school b:nth-child(4n+4){background:#80e6fa;box-shadow:0 0 11px #60d7ff76}
 .lab-title{display:flex;align-items:center;gap:12px}.lab-title::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,#60458a,transparent)}.card{border-radius:14px;box-shadow:0 12px 26px #09051b48}.instructions{border-top-color:#f18dd1}.editor-card{border-top-color:#b695ff}.preview-card{border-top-color:#78deec}.bar{background:linear-gradient(110deg,#251b40,#1b1732)}.task code{color:var(--pink)}.step,.ghost,.tab{background:#25203b;color:#ded3f4}.step[aria-pressed=true],.tab[aria-pressed=true]{background:color-mix(in srgb,var(--accent,#c1a2ff) 17%,#211831);border-color:var(--accent,#c1a2ff);color:var(--accent,#c1a2ff)}
 :is(.tab,.step):nth-child(1){--accent:#ff9edb}:is(.tab,.step):nth-child(2){--accent:#9aeaff}:is(.tab,.step):nth-child(3){--accent:#ffdc96}
 .run{background:linear-gradient(110deg,#b8ffab,#85f0ff);color:#15253b;box-shadow:0 0 14px #89edfc42}.run:hover{background:linear-gradient(110deg,#d6ffc4,#b7f6ff)}
@@ -35,20 +43,30 @@ header{background:#110e24c9}header .wrap{min-height:60px}.mark{background:linear
 .token-help{position:fixed;z-index:20;max-width:min(300px,calc(100vw - 16px));padding:9px 12px;border-radius:8px;border:1px solid #8460bd;background:#251940;box-shadow:0 10px 24px #090415a0;color:#f3eaff;font-size:13px;pointer-events:none}
 .token-help strong{display:block;color:#a1f1ff;font:700 13px var(--mono);margin-bottom:4px;overflow-wrap:anywhere}
 .console{background:#17112c}.console pre{color:#c1f4ea}.check-result.good{color:#c8ff9d}.foot{flex-wrap:wrap}
-@media(max-width:680px){.hero{min-height:228px}.sky{inset:0 0 0 30%;opacity:.56}.hero h1{max-width:12ch}.school{width:74%;right:3%;gap:7px;padding-inline:10px}}
 @media(forced-colors:active){.highlight{visibility:hidden}#code,#code::selection{color:CanvasText;caret-color:CanvasText}}
 </style>
 </head>
 <body>
 <header><div class="wrap"><div class="brand"><span class="mark" aria-hidden="true">◒</span> Ночная лаборатория</div><div class="progress"><span id="progress">0 из 3 готово</span><span class="ticks" aria-hidden="true"><i></i><i></i><i></i></span></div></div></header>
 <main class="wrap">
-<section class="hero"><div class="hero-copy"><p class="eyebrow">Практикум по веб-разработке</p><h1>Ночь <span>в колледже</span></h1><p>После пар колледж опустел. Собери ночную сцену и включи свет в аудитории с помощью кода.</p></div><div class="sky" aria-hidden="true"><div class="moon"></div><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><div class="school"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div></section>
-<h2 class="lab-title">Рабочее место</h2>
+<section class="hero"><div class="hero-copy"><p class="eyebrow">Практикум по веб-разработке</p><h1>Ночь <span>в колледже</span></h1><p>Зажги окна ночного колледжа с помощью кода. Если застрянешь, Лис подскажет, что писать дальше.</p><a class="hero-link" href="#workbench">К заданиям</a></div><img class="hero-guide" src="fox-guide.png" width="416" height="416" alt=""></section>
+<h2 class="lab-title" id="workbench">Рабочее место</h2>
 <div class="lab">
 <section class="card instructions"><div class="bar"><h3>Задания</h3><span class="badge" id="chapter"></span></div><div class="task">
 <nav class="steps" aria-label="Этапы практикума"><button type="button" class="step">HTML</button><button type="button" class="step">CSS</button><button type="button" class="step">JS</button></nav>
 <h4 id="task-title"></h4><p id="task-text"></p>
-<details id="hint"><summary>Подсказка</summary><p id="hint-text"></p></details>
+<details class="guide" id="hint">
+  <summary><span class="guide-avatar" aria-hidden="true"></span><span>Спросить Лиса</span></summary>
+  <div class="guide-body">
+    <div aria-live="polite">
+      <span class="guide-step" id="guide-step"></span>
+      <strong class="guide-title" id="guide-title"></strong>
+      <p id="hint-text"></p>
+      <pre id="guide-example"><code id="guide-code"></code></pre>
+    </div>
+    <div class="guide-nav"><button type="button" id="guide-prev">Назад</button><button type="button" id="guide-next">Следующий шаг</button></div>
+  </div>
+</details>
 <div class="actions"><button type="button" class="ghost" id="check">Проверить</button><button type="button" class="ghost" id="next" hidden>Дальше</button></div>
 <p id="check-result" class="check-result" role="status"></p>
 </div></section>
@@ -84,11 +102,29 @@ const starter = {
   js: '// Добавь обработчик клика для кнопки #switch.\n'
 };
 const lessons = [
-  {lang:'html', title:'Окна аудитории', text:'Внутри <code>.building</code> добавь хотя бы три элемента с классом <code>window</code>. Запусти код, чтобы увидеть окна.', hint:'Для каждого окна напиши <code>&lt;div class="window"&gt;&lt;/div&gt;</code>.', fail:'Внутри .building должно быть хотя бы три элемента .window.', pass:'Окна появились.'},
-  {lang:'css', title:'Тёплый свет', text:'Добавь правило <code>.window.lit</code> с жёлтым фоном. Для проверки стиля приложение на мгновение добавит окнам класс <code>lit</code>.', hint:'Попробуй <code>.window.lit { background: #ffc85a; }</code>. Чтобы увидеть свет при обычном запуске, можно временно добавить класс <code>lit</code> окну в HTML.', fail:'Нужны окна и заметная смена фона при добавлении класса lit.', pass:'Стиль включённого света работает.'},
-  {lang:'js', title:'Выключатель', text:'При каждом клике по кнопке <code>#switch</code> переключай класс <code>lit</code> у всех окон. Нажми «Запустить» и попробуй кнопку в сцене.', hint:'Найди кнопку через <code>document.querySelector("#switch")</code>. В обработчике <code>click</code> обойди результат <code>document.querySelectorAll(".window")</code> методом <code>forEach</code> и для каждого окна вызови <code>classList.toggle("lit")</code>.', fail:'Два клика по кнопке должны сначала переключить класс lit у каждого окна, затем вернуть исходное состояние.', pass:'Выключатель работает. Если все этапы отмечены, практикум пройден!'}
+  {lang:'html', title:'Окна аудитории', text:'Внутри <code>.building</code> добавь хотя бы три элемента с классом <code>window</code>. Запусти код, чтобы увидеть окна.', fail:'Внутри .building должно быть хотя бы три элемента .window.', pass:'Окна появились.'},
+  {lang:'css', title:'Тёплый свет', text:'Добавь правило <code>.window.lit</code> с жёлтым фоном. Для проверки стиля приложение на мгновение добавит окнам класс <code>lit</code>.', fail:'Нужны окна и заметная смена фона при добавлении класса lit.', pass:'Стиль включённого света работает.'},
+  {lang:'js', title:'Выключатель', text:'При каждом клике по кнопке <code>#switch</code> переключай класс <code>lit</code> у всех окон. Нажми «Запустить» и попробуй кнопку в сцене.', fail:'Два клика по кнопке должны сначала переключить класс lit у каждого окна, затем вернуть исходное состояние.', pass:'Выключатель работает. Если все этапы отмечены, практикум пройден!'}
 ];
 const storageKey = 'college-night-workshop-v1';
+const guideSteps = [
+  [
+    {title:'Найди место для окон', instruction:'Открой вкладку HTML над редактором. Найди этот блок. Окна нужно вписать внутрь него, на место комментария «Здесь будут окна».', code:'<div class="building">\n  \x3c!-- Здесь будут окна -->\n</div>'},
+    {title:'Впиши три окна', instruction:'Выдели только строку с комментарием и замени её этими тремя строками. Открывающий тег здания и закрывающий </div> под ним оставь на месте.', code:'<div class="window"></div>\n<div class="window"></div>\n<div class="window"></div>'},
+    {title:'Посмотри на результат', instruction:'Нажми «Запустить». В здании справа должны появиться три тёмных квадрата. Затем нажми «Проверить» и переходи к CSS.', code:''}
+  ],
+  [
+    {title:'Открой CSS и перейди в конец', instruction:'Нажми вкладку CSS над редактором. Прокрути код до конца и найди комментарий ниже. Допиши новое правило после него, за пределами предыдущих фигурных скобок.', code:'/* Добавь стиль для .window.lit */'},
+    {title:'Напиши правило для горящего окна', instruction:'Вставь эти три строки в конец CSS. Между .window и .lit пробел не нужен. Тогда правило сработает для окна, у которого есть оба класса.', code:'.window.lit {\n  background: #ffc85a;\n}'},
+    {title:'Проверь свет', instruction:'Нажми «Проверить». Лис проверит, меняется ли цвет окон при добавлении класса lit. При обычном запуске окна пока тёмные — выключатель подключим на следующем этапе.', code:''}
+  ],
+  [
+    {title:'Найди кнопку и окна', instruction:'Открой вкладку JS. Замени стартовый комментарий этим кодом. Первое выражение находит кнопку «Свет», второе — список всех окон.', code:'const button =\n  document.querySelector("#switch");\nconst windows =\n  document.querySelectorAll(".window");'},
+    {title:'Добавь обработчик клика', instruction:'Под строкой, заканчивающейся на querySelectorAll, с новой строки допиши весь блок ниже. Код внутри фигурных скобок будет выполняться при каждом клике.', code:'button.addEventListener("click", () => {\n  // Здесь переключим окна.\n});'},
+    {title:'Переключи класс у каждого окна', instruction:'Внутри обработчика замени только строку «// Здесь переключим окна.» этим фрагментом. Закрывающую строку }); от обработчика оставь после него.', code:'  windows.forEach((win) => {\n    win.classList.toggle("lit");\n  });'},
+    {title:'Сверь код и включи свет', instruction:'Весь JS должен получиться таким. Нажми «Запустить», затем дважды нажми «Свет» в сцене: первый клик зажигает окна, второй гасит. После этого нажми «Проверить».', code:'const button =\n  document.querySelector("#switch");\nconst windows =\n  document.querySelectorAll(".window");\n\nbutton.addEventListener("click", () => {\n  windows.forEach((win) => {\n    win.classList.toggle("lit");\n  });\n});'}
+  ]
+];
 const draft = {...starter};
 let completed = [];
 try {
@@ -106,6 +142,7 @@ const gutter = byId('gutter');
 const tabs = [...document.querySelectorAll('.tab')];
 const steps = [...document.querySelectorAll('.step')];
 let lesson = 0;
+let guideStep = 0;
 let lang = 'html';
 let frame;
 let runId = 0;
@@ -287,7 +324,8 @@ function showLesson(index) {
   byId('chapter').textContent = (index + 1) + ' / ' + lessons.length;
   byId('task-title').textContent = task.title;
   byId('task-text').innerHTML = task.text;
-  byId('hint-text').innerHTML = task.hint;
+  guideStep = 0;
+  renderGuide();
   byId('hint').open = false;
   feedback('', '');
   renderProgress();
@@ -298,6 +336,19 @@ function feedback(message, tone) {
   el.textContent = message;
   el.className = 'check-result ' + tone;
 }
+function renderGuide() {
+  const sequence = guideSteps[lesson];
+  const step = sequence[guideStep];
+  byId('guide-step').textContent = 'Шаг ' + (guideStep + 1) + ' из ' + sequence.length;
+  byId('guide-title').textContent = step.title;
+  byId('hint-text').textContent = step.instruction;
+  byId('guide-code').textContent = step.code;
+  byId('guide-example').hidden = !step.code;
+  byId('guide-prev').disabled = guideStep === 0;
+  byId('guide-next').disabled = guideStep === sequence.length - 1;
+}
+byId('guide-prev').onclick = () => { guideStep--; renderGuide(); };
+byId('guide-next').onclick = () => { guideStep++; renderGuide(); };
 function handleEdit() {
   draft[lang] = editor.value;
   updateGutter();
