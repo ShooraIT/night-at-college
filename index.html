@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ночь в колледже — интерактивный практикум</title>
+<style>
+:root{color-scheme:dark;--paper:#0b0f16;--panel:#121923;--border:#26313e;--ink:#eef0e7;--quiet:#a5b1bc;--lime:#dcff72;--mono:Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,sans-serif}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--lime);outline-offset:3px}a{color:inherit}.wrap{max-width:1400px;margin:auto;padding:0 clamp(16px,4vw,64px)}
+header{border-bottom:1px solid var(--border)}header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:65px;gap:12px}.brand{font:700 15px var(--mono);display:flex;align-items:center;gap:10px}.mark{width:27px;height:27px;display:grid;place-items:center;background:var(--lime);color:#111809;border-radius:6px}.progress{font:14px var(--mono);color:var(--quiet);display:flex;gap:10px;align-items:center}.ticks{display:flex;gap:4px}.ticks i{display:block;width:13px;height:5px;background:#394453;border-radius:3px}.ticks i.done{background:var(--lime)}
+.hero{margin-top:26px;min-height:230px;border:1px solid #33394e;border-radius:16px;overflow:hidden;position:relative;background:radial-gradient(ellipse at 78% 110%,#33355c,transparent 58%),linear-gradient(110deg,#17192b,#151b31);display:flex;align-items:center}.hero-copy{position:relative;z-index:2;padding:28px clamp(20px,4vw,52px);max-width:660px}.eyebrow{font:700 12px var(--mono);color:var(--lime);letter-spacing:.13em;text-transform:uppercase;margin:0 0 10px}.hero h1{font-size:clamp(38px,6.2vw,78px);line-height:.99;letter-spacing:-.065em;margin:0 0 16px}.hero-copy>p:last-child{margin:0;color:#c4c8dc;max-width:39ch}.sky{position:absolute;inset:0 0 0 50%;overflow:hidden}.moon{position:absolute;width:68px;aspect-ratio:1;border-radius:100%;background:#e0debd;right:13%;top:17%;box-shadow:0 0 38px #e3e0bd48}.star{position:absolute;width:3px;height:3px;background:#e6e0c9;box-shadow:0 0 7px #eee}.star:nth-child(2){top:16%;left:20%}.star:nth-child(3){top:30%;left:48%}.star:nth-child(4){top:13%;right:8%}.star:nth-child(5){top:46%;right:5%}.school{position:absolute;right:10%;bottom:-6px;width:66%;height:53%;border-top:4px solid #535773;background:#1c233b;box-shadow:12px 14px 0 #101325;display:grid;grid-template-columns:repeat(6,1fr);gap:13px;padding:20px 15px}.school:before{content:"";position:absolute;bottom:100%;left:34%;width:32%;height:36px;background:#292d48;clip-path:polygon(50% 0,100% 100%,0 100%)}.school b{background:#333a53;border:2px solid #191e33;border-radius:2px}.school b:nth-child(3n+1),.school b:nth-child(8){background:#f3ce78;box-shadow:0 0 12px #efb75645}
+.lab-title{margin:25px 0 11px;font-size:21px;letter-spacing:-.02em}.lab{display:grid;grid-template-columns:minmax(245px,.85fr) minmax(330px,1.45fr) minmax(265px,1fr);gap:12px;align-items:start}.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}.bar{min-height:52px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 13px}.bar h3{margin:0;font-size:14px}.badge{font:12px var(--mono);color:var(--quiet)}.task{padding:16px}.steps{display:flex;gap:6px;margin-bottom:16px}.step,.ghost,.tab{background:#18212d;color:var(--quiet);border:1px solid var(--border);border-radius:6px;padding:6px 9px;font-size:13px}.step[aria-pressed=true],.tab[aria-pressed=true]{color:var(--lime);background:#222c23;border-color:#637643}.step.complete::after{content:" ✓"}.task h4{margin:0 0 7px;font-size:20px;letter-spacing:-.025em}.task p{margin:0 0 13px;color:var(--quiet);font-size:14px}.task code{color:var(--lime);font-family:var(--mono)}details{font-size:14px;margin:12px 0;color:var(--quiet)}summary{cursor:pointer;color:var(--ink)}details p{padding-top:6px}.actions{display:flex;gap:6px;flex-wrap:wrap}.ghost:hover,.tab:hover,.step:hover{border-color:var(--lime);color:var(--ink)}.run{padding:7px 11px;border:0;border-radius:6px;background:var(--lime);color:#17200b;font-size:13px;font-weight:800;white-space:nowrap}.run:hover{background:#efffae}.run:disabled{opacity:.6}.editorBar{flex-wrap:wrap;padding-block:8px}.tabs{display:flex;gap:5px}.tab{font-family:var(--mono)}.gutter{margin:0;padding:12px 8px;text-align:right;color:#78899c;background:#0f151e;min-width:34px;overflow:hidden;user-select:none}.edit{display:flex;background:#0c1119;height:309px}.gutter,textarea{font:14px/22px var(--mono)}textarea{resize:none;min-width:0;flex:1;outline:none!important;border:0;border-radius:0;background:transparent;color:#e1edd8;padding:12px 10px;tab-size:2;white-space:pre;overflow:auto}textarea:focus{box-shadow:inset 0 0 0 1px #657d46}.foot{display:flex;justify-content:space-between;gap:6px;align-items:center;border-top:1px solid var(--border);padding:8px 10px;min-height:43px;font:12px var(--mono);color:var(--quiet)}.foot button{font-size:12px;padding:3px 7px}
+iframe{display:block;width:100%;height:247px;border:0;background:#101421}.console{border-top:1px solid var(--border);padding:8px 12px;height:105px;overflow:auto}.console h4{font-size:12px;margin:0 0 5px;color:var(--quiet)}.console pre{font:12px/1.5 var(--mono);margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:#c8d5e2}.check-result{min-height:2.8em;margin-top:12px!important}.check-result.good{color:var(--lime)}.check-result.bad{color:#ffc992}footer{padding:20px 0 28px;color:var(--quiet);font-size:13px}
+@media(max-width:1120px){.lab{grid-template-columns:1fr 1fr}.instructions{grid-column:1/-1}.task{padding:14px}.check-result:empty{min-height:0;margin:0!important}}
+@media(max-width:680px){.lab{grid-template-columns:1fr}.sky{left:28%;opacity:.42}.hero{min-height:214px}.hero-copy{padding-block:24px}.progress{font-size:12px}.ticks{display:none}.edit{height:270px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="brand"><span class="mark" aria-hidden="true">◒</span> Ночная лаборатория</div><div class="progress"><span id="progress">0 из 3 готово</span><span class="ticks" aria-hidden="true"><i></i><i></i><i></i></span></div></div></header>
+<main class="wrap">
+<section class="hero"><div class="hero-copy"><p class="eyebrow">Практикум по веб-разработке</p><h1>Ночь в колледже</h1><p>После пар колледж опустел. Собери ночную сцену и включи свет в аудитории с помощью кода.</p></div><div class="sky" aria-hidden="true"><div class="moon"></div><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><div class="school"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div></section>
+<h2 class="lab-title">Рабочее место</h2>
+<div class="lab">
+<section class="card instructions"><div class="bar"><h3>Задания</h3><span class="badge" id="chapter"></span></div><div class="task">
+<nav class="steps" aria-label="Этапы практикума"><button type="button" class="step">HTML</button><button type="button" class="step">CSS</button><button type="button" class="step">JS</button></nav>
+<h4 id="task-title"></h4><p id="task-text"></p>
+<details id="hint"><summary>Подсказка</summary><p id="hint-text"></p></details>
+<div class="actions"><button type="button" class="ghost" id="check">Проверить</button><button type="button" class="ghost" id="next" hidden>Дальше</button></div>
+<p id="check-result" class="check-result" role="status"></p>
+</div></section>
+<section class="card"><div class="bar editorBar"><div class="tabs" aria-label="Язык редактора"><button type="button" class="tab" data-lang="html">HTML</button><button type="button" class="tab" data-lang="css">CSS</button><button type="button" class="tab" data-lang="js">JS</button></div><button type="button" class="run" id="run">▶ Запустить</button></div>
+<div class="edit"><pre class="gutter" id="gutter" aria-hidden="true"></pre><textarea id="code" aria-label="Редактор кода" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off"></textarea></div>
+<div class="foot"><span>Ctrl/⌘ + Enter</span><button type="button" class="ghost" id="reset">Сбросить вкладку</button></div></section>
+<section class="card"><div class="bar"><h3>Результат</h3><span class="badge" id="run-status" role="status">Готово</span></div><div id="frame-slot"></div><div class="console"><h4>Консоль</h4><pre id="console" role="log" aria-label="Вывод консоли"></pre></div></section>
+</div>
+<footer>Черновик и пройденные задания сохраняются в этом браузере, если доступно локальное хранилище.</footer>
+</main>
+<script>
+'use strict';
+const byId = id => document.getElementById(id);
+const starter = {
+  html: ['<main class="scene">','  <div class="moon"></div>','  <h1>Колледж</h1>','  <div class="building">','    <!-- Здесь будут окна -->','  </div>','  <button id="switch">Свет</button>','</main>'].join('\n'),
+  css: [
+    'body { margin: 0; font-family: system-ui; color: #f5f1e0; }',
+    '.scene { min-height: 100vh; box-sizing: border-box; padding: 20px;',
+    '  text-align: center; background: linear-gradient(#14172d, #333053); }',
+    '.moon { width: 30px; height: 30px; margin-left: auto;',
+    '  border-radius: 50%; background: #f4e6a9; box-shadow: 0 0 20px #f4e69066; }',
+    'h1 { font-size: 21px; margin: 0 0 9px; }',
+    '.building { min-height: 25px; max-width: 210px; margin: auto;',
+    '  display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;',
+    '  padding: 14px; border-top: 4px solid #62718d; background: #232a40; }',
+    '.window { width: 32px; height: 32px; background: #475371;',
+    '  border: 2px solid #111725; border-radius: 3px; }',
+    'button { margin-top: 11px; padding: 5px 12px; cursor: pointer; }',
+    '',
+    '/* Добавь стиль для .window.lit */'
+  ].join('\n'),
+  js: '// Добавь обработчик клика для кнопки #switch.\n'
+};
+const lessons = [
+  {lang:'html', title:'Окна аудитории', text:'Внутри <code>.building</code> добавь хотя бы три элемента с классом <code>window</code>. Запусти код, чтобы увидеть окна.', hint:'Для каждого окна напиши <code>&lt;div class="window"&gt;&lt;/div&gt;</code>.', fail:'Внутри .building должно быть хотя бы три элемента .window.', pass:'Окна появились.'},
+  {lang:'css', title:'Тёплый свет', text:'Добавь правило <code>.window.lit</code> с жёлтым фоном. Для проверки стиля приложение на мгновение добавит окнам класс <code>lit</code>.', hint:'Попробуй <code>.window.lit { background: #ffc85a; }</code>. Чтобы увидеть свет при обычном запуске, можно временно добавить класс <code>lit</code> окну в HTML.', fail:'Нужны окна и заметная смена фона при добавлении класса lit.', pass:'Стиль включённого света работает.'},
+  {lang:'js', title:'Выключатель', text:'При каждом клике по кнопке <code>#switch</code> переключай класс <code>lit</code> у всех окон. Нажми «Запустить» и попробуй кнопку в сцене.', hint:'Найди кнопку через <code>document.querySelector("#switch")</code>. В обработчике <code>click</code> обойди результат <code>document.querySelectorAll(".window")</code> методом <code>forEach</code> и для каждого окна вызови <code>classList.toggle("lit")</code>.', fail:'Два клика по кнопке должны сначала переключить класс lit у каждого окна, затем вернуть исходное состояние.', pass:'Выключатель работает. Если все этапы отмечены, практикум пройден!'}
+];
+const storageKey = 'college-night-workshop-v1';
+const draft = {...starter};
+let completed = [];
+try {
+  const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  for (const kind of Object.keys(starter)) {
+    if (typeof saved?.draft?.[kind] === 'string') draft[kind] = saved.draft[kind];
+  }
+  if (Array.isArray(saved?.completed)) completed = [...new Set(saved.completed.filter(i => [0,1,2].includes(i)))];
+} catch {}
+function save() {
+  try { localStorage.setItem(storageKey, JSON.stringify({draft, completed})); } catch {}
+}
+const editor = byId('code');
+const gutter = byId('gutter');
+const tabs = [...document.querySelectorAll('.tab')];
+const steps = [...document.querySelectorAll('.step')];
+let lesson = 0;
+let lang = 'html';
+let frame;
+let runId = 0;
+let runTimer;
+let checkFor = null;
+let logLines = [];
+function updateGutter() {
+  gutter.textContent = editor.value.split('\n').map((_, i) => i + 1).join('\n');
+  gutter.scrollTop = editor.scrollTop;
+}
+function showTab(kind) {
+  lang = kind;
+  editor.value = draft[kind];
+  editor.scrollTop = 0;
+  editor.scrollLeft = 0;
+  editor.setSelectionRange(0, 0);
+  editor.setAttribute('aria-label', 'Редактор ' + kind.toUpperCase());
+  tabs.forEach(tab => tab.setAttribute('aria-pressed', String(tab.dataset.lang === kind)));
+  updateGutter();
+}
+function renderProgress() {
+  byId('progress').textContent = completed.length + ' из 3 готово';
+  document.querySelectorAll('.ticks i').forEach((tick, i) => tick.classList.toggle('done', i < completed.length));
+  steps.forEach((step, i) => step.classList.toggle('complete', completed.includes(i)));
+  byId('next').hidden = lesson === lessons.length - 1 || !completed.includes(lesson);
+}
+function showLesson(index) {
+  lesson = index;
+  const task = lessons[index];
+  steps.forEach((step, i) => step.setAttribute('aria-pressed', String(i === index)));
+  byId('chapter').textContent = (index + 1) + ' / ' + lessons.length;
+  byId('task-title').textContent = task.title;
+  byId('task-text').innerHTML = task.text;
+  byId('hint-text').innerHTML = task.hint;
+  byId('hint').open = false;
+  feedback('', '');
+  renderProgress();
+  showTab(task.lang);
+}
+function feedback(message, tone) {
+  const el = byId('check-result');
+  el.textContent = message;
+  el.className = 'check-result ' + tone;
+}
+function handleEdit() {
+  draft[lang] = editor.value;
+  updateGutter();
+  save();
+}
+editor.addEventListener('input', handleEdit);
+editor.addEventListener('scroll', () => { gutter.scrollTop = editor.scrollTop; });
+editor.addEventListener('keydown', event => {
+  if (event.key === 'Tab' && !event.shiftKey && !event.ctrlKey && !event.metaKey) {
+    event.preventDefault();
+    editor.setRangeText('  ', editor.selectionStart, editor.selectionEnd, 'end');
+    handleEdit();
+  }
+  if (event.key === 'Escape') byId('run').focus();
+});
+tabs.forEach(tab => tab.onclick = () => { showTab(tab.dataset.lang); editor.focus(); });
+steps.forEach((step, i) => step.onclick = () => showLesson(i));
+byId('next').onclick = () => showLesson(lesson + 1);
+byId('reset').onclick = () => {
+  if (draft[lang] === starter[lang] || !confirm('Вернуть заготовку этой вкладки?')) return;
+  draft[lang] = starter[lang];
+  showTab(lang);
+  save();
+  run();
+};
+function safeJSON(value) {
+  return JSON.stringify(value).replace(/</g, '\\u003c');
+}
+function frameMain(payload) {
+  const post = (type, value) => parent.postMessage({id: payload.id, type, value}, '*');
+  function format(value) {
+    if (typeof value === 'string') return value.slice(0, 1500);
+    try { return (JSON.stringify(value) ?? String(value)).slice(0, 1500); }
+    catch { return String(value).slice(0, 1500); }
+  }
+  for (const level of ['log','info','warn','error']) {
+    console[level] = (...args) => post('log', (level === 'log' ? '' : level + ' · ') + args.map(format).join(' ').slice(0, 2000));
+  }
+  let failed = false;
+  addEventListener('error', event => { failed = true; post('log', 'Ошибка · ' + event.message); });
+  addEventListener('unhandledrejection', event => { failed = true; post('log', 'Ошибка · ' + format(event.reason)); });
+  const css = document.createElement('style');
+  css.textContent = payload.css;
+  document.head.append(css);
+  const parsed = new DOMParser().parseFromString(payload.html, 'text/html');
+  parsed.querySelectorAll('script, base, meta[http-equiv], iframe, object, embed').forEach(node => node.remove());
+  document.head.append(...parsed.head.children);
+  document.body.append(...parsed.body.childNodes);
+  const script = document.createElement('script');
+  script.textContent = payload.js;
+  document.body.append(script);
+  post('ready', failed);
+  if (payload.check === null) return;
+  const windows = [...document.querySelectorAll('.building .window')];
+  let passed = windows.length >= 3;
+  if (payload.check === 1) {
+    const snapshot = windows.map(win => win.classList.contains('lit'));
+    const colors = windows.map(win => { win.classList.remove('lit'); return getComputedStyle(win).backgroundColor; });
+    windows.forEach(win => win.classList.add('lit'));
+    passed = passed && windows.every((win, i) => {
+      const color = getComputedStyle(win).backgroundColor;
+      return color !== colors[i] && color !== 'rgba(0, 0, 0, 0)';
+    });
+    windows.forEach((win, i) => win.classList.toggle('lit', snapshot[i]));
+  }
+  if (payload.check === 2) {
+    const button = document.querySelector('#switch');
+    const snapshot = windows.map(win => win.classList.contains('lit'));
+    button?.click();
+    passed = passed && !!button && windows.every((win, i) => win.classList.contains('lit') !== snapshot[i]);
+    button?.click();
+    passed = passed && windows.every((win, i) => win.classList.contains('lit') === snapshot[i]);
+  }
+  post('checked', passed && (payload.check !== 2 || !failed));
+}
+function run(index = null) {
+  clearTimeout(runTimer);
+  checkFor = index;
+  if (index !== null) feedback('Проверяем…', '');
+  logLines = [];
+  byId('console').textContent = 'Здесь появятся сообщения и ошибки.';
+  byId('run-status').textContent = 'Выполняется…';
+  frame = document.createElement('iframe');
+  frame.title = 'Предпросмотр сцены';
+  frame.setAttribute('sandbox', 'allow-scripts');
+  const csp = "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'";
+  const payload = {...draft, id: ++runId, check:index};
+  frame.srcdoc = '<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="' + csp + '"><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><script>(' + frameMain.toString() + ')(' + safeJSON(payload) + ');<\/script></body></html>';
+  byId('frame-slot').replaceChildren(frame);
+  runTimer = setTimeout(() => {
+    byId('run-status').textContent = 'Нет ответа';
+    if (checkFor === lesson) feedback('Проверка не завершилась. Проверь код и повтори запуск.', 'bad');
+  }, 2500);
+}
+addEventListener('message', event => {
+  const data = event.data;
+  if (event.source !== frame?.contentWindow || data?.id !== runId) return;
+  if (data.type === 'log' && typeof data.value === 'string') {
+    if (logLines.length < 100) logLines.push(data.value);
+    byId('console').textContent = logLines.join('\n');
+    return;
+  }
+  if (data.type === 'ready') {
+    if (checkFor === null) clearTimeout(runTimer);
+    byId('run-status').textContent = data.value ? 'Есть ошибка' : 'Запущено';
+  }
+  if (data.type === 'checked' && checkFor !== null) {
+    clearTimeout(runTimer);
+    const index = checkFor;
+    checkFor = null;
+    if (data.value && !completed.includes(index)) {
+      completed.push(index);
+      save();
+    }
+    renderProgress();
+    if (index === lesson) feedback(lessons[index][data.value ? 'pass' : 'fail'], data.value ? 'good' : 'bad');
+  }
+});
+byId('run').onclick = () => {
+  feedback('', '');
+  run();
+};
+byId('check').onclick = () => run(lesson);
+document.addEventListener('keydown', event => {
+  if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+    event.preventDefault();
+    byId('run').click();
+  }
+});
+showLesson(0);
+run();
+</script>
+</body>
+</html>
