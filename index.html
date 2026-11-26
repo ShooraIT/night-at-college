@@ -5,44 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ночь в колледже — интерактивный практикум</title>
 <style>
-:root{color-scheme:dark;--paper:#0b0f16;--panel:#121923;--border:#26313e;--ink:#eef0e7;--quiet:#a5b1bc;--lime:#dcff72;--mono:Consolas,monospace}
+:root{color-scheme:dark;--paper:#211712;--panel:#2c1f18;--border:#513727;--ink:#fff1df;--quiet:#d6b89e;--lime:#ffc980;--mono:Consolas,monospace}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,sans-serif}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--lime);outline-offset:3px}a{color:inherit}.wrap{max-width:1400px;margin:auto;padding:0 clamp(16px,4vw,64px)}
-header{border-bottom:1px solid var(--border)}header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:65px;gap:12px}.brand{font:700 15px var(--mono);display:flex;align-items:center;gap:10px}.mark{width:27px;height:27px;display:grid;place-items:center;background:var(--lime);color:#111809;border-radius:6px}.progress{font:14px var(--mono);color:var(--quiet);display:flex;gap:10px;align-items:center}.ticks{display:flex;gap:4px}.ticks i{display:block;width:13px;height:5px;background:#394453;border-radius:3px}.ticks i.done{background:var(--lime)}
-.hero{margin-top:26px;min-height:340px;border:1px solid #655066;border-radius:22px;overflow:hidden;position:relative;isolation:isolate;display:flex;align-items:center;background:#11152c url("campus-night.jpg") right center/cover no-repeat;box-shadow:0 18px 50px #08051290}
-.lab-title{margin:25px 0 11px;font-size:21px;letter-spacing:-.02em}.lab{display:grid;grid-template-columns:minmax(245px,.85fr) minmax(330px,1.45fr) minmax(265px,1fr);gap:12px;align-items:start}.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}.bar{min-height:52px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 13px}.bar h3{margin:0;font-size:14px}.badge{font:12px var(--mono);color:var(--quiet)}.task{padding:16px}.steps{display:flex;gap:6px;margin-bottom:16px}.step,.ghost,.tab{background:#18212d;color:var(--quiet);border:1px solid var(--border);border-radius:6px;padding:6px 9px;font-size:13px}.step[aria-pressed=true],.tab[aria-pressed=true]{color:var(--lime);background:#222c23;border-color:#637643}.step.complete::after{content:" ✓"}.task h4{margin:0 0 7px;font-size:20px;letter-spacing:-.025em}.task p{margin:0 0 13px;color:var(--quiet);font-size:14px}.task code{color:var(--lime);font-family:var(--mono)}details{font-size:14px;margin:12px 0;color:var(--quiet)}summary{cursor:pointer;color:var(--ink)}details p{padding-top:6px}.actions{display:flex;gap:6px;flex-wrap:wrap}.ghost:hover,.tab:hover,.step:hover{border-color:var(--lime);color:var(--ink)}.run{padding:7px 11px;border:0;border-radius:6px;background:var(--lime);color:#17200b;font-size:13px;font-weight:800;white-space:nowrap}.run:hover{background:#efffae}.run:disabled{opacity:.6}.editorBar{flex-wrap:wrap;padding-block:8px}.tabs{display:flex;gap:5px}.tab{font-family:var(--mono)}.gutter{margin:0;padding:12px 8px;text-align:right;color:#78899c;background:#0f151e;min-width:34px;overflow:hidden;user-select:none}.edit{display:flex;background:#0c1119;height:309px}.gutter,textarea{font:14px/22px var(--mono)}textarea{resize:none;min-width:0;flex:1;outline:none!important;border:0;border-radius:0;background:transparent;color:#e1edd8;padding:12px 10px;tab-size:2;white-space:pre;overflow:auto}textarea:focus{box-shadow:inset 0 0 0 1px #657d46}.foot{display:flex;justify-content:space-between;gap:6px;align-items:center;border-top:1px solid var(--border);padding:8px 10px;min-height:43px;font:12px var(--mono);color:var(--quiet)}.foot button{font-size:12px;padding:3px 7px}
-iframe{display:block;width:100%;height:247px;border:0;background:#101421}.console{border-top:1px solid var(--border);padding:8px 12px;height:105px;overflow:auto}.console h4{font-size:12px;margin:0 0 5px;color:var(--quiet)}.console pre{font:12px/1.5 var(--mono);margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:#c8d5e2}.check-result{min-height:2.8em;margin-top:12px!important}.check-result.good{color:var(--lime)}.check-result.bad{color:#ffc992}footer{padding:20px 0 28px;color:var(--quiet);font-size:13px}
+header{border-bottom:1px solid var(--border)}header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:65px;gap:12px}.brand{font:700 15px var(--mono);display:flex;align-items:center;gap:10px}.mark{width:27px;height:27px;display:grid;place-items:center;background:var(--lime);color:#301c13;border-radius:6px}.progress{font:14px var(--mono);color:var(--quiet);display:flex;gap:10px;align-items:center}.ticks{display:flex;gap:4px}.ticks i{display:block;width:13px;height:5px;background:#674632;border-radius:3px}.ticks i.done{background:var(--lime)}
+.hero{margin-top:26px;min-height:340px;border:1px solid #885537;border-radius:22px;overflow:hidden;position:relative;isolation:isolate;display:flex;align-items:center;background:#11152c url("campus-night.jpg") right center/cover no-repeat;box-shadow:0 18px 50px #120a0690}
+.lab-title{margin:25px 0 11px;font-size:21px;letter-spacing:-.02em}.lab{display:grid;grid-template-columns:minmax(245px,.85fr) minmax(330px,1.45fr) minmax(265px,1fr);gap:12px;align-items:start}.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}.bar{min-height:52px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 13px}.bar h3{margin:0;font-size:14px}.badge{font:12px var(--mono);color:var(--quiet)}.task{padding:16px}.steps{display:flex;gap:6px;margin-bottom:16px}.step,.ghost,.tab{background:#38271e;color:var(--quiet);border:1px solid var(--border);border-radius:6px;padding:6px 9px;font-size:13px}.step[aria-pressed=true],.tab[aria-pressed=true]{color:var(--lime);background:#50331f;border-color:#9b653e}.step.complete::after{content:" ✓"}.task h4{margin:0 0 7px;font-size:20px;letter-spacing:-.025em}.task p{margin:0 0 13px;color:var(--quiet);font-size:14px}.task code{color:var(--lime);font-family:var(--mono)}details{font-size:14px;margin:12px 0;color:var(--quiet)}summary{cursor:pointer;color:var(--ink)}details p{padding-top:6px}.actions{display:flex;gap:6px;flex-wrap:wrap}.ghost:hover,.tab:hover,.step:hover{border-color:var(--lime);color:var(--ink)}.run{padding:7px 11px;border:0;border-radius:6px;background:var(--lime);color:#321911;font-size:13px;font-weight:800;white-space:nowrap}.run:hover{background:#ffdfac}.run:disabled{opacity:.6}.editorBar{flex-wrap:wrap;padding-block:8px}.tabs{display:flex;gap:5px}.tab{font-family:var(--mono)}.gutter{margin:0;padding:12px 8px;text-align:right;color:#c8a68a;background:#281c17;min-width:34px;overflow:hidden;user-select:none}.edit{display:flex;background:#1c1411;height:309px}.gutter,textarea{font:14px/22px var(--mono)}textarea{resize:none;min-width:0;flex:1;outline:none!important;border:0;border-radius:0;background:transparent;color:#fff2df;padding:12px 10px;tab-size:2;white-space:pre;overflow:auto}textarea:focus{box-shadow:inset 0 0 0 1px #a66942}.foot{display:flex;justify-content:space-between;gap:6px;align-items:center;border-top:1px solid var(--border);padding:8px 10px;min-height:43px;font:12px var(--mono);color:var(--quiet)}.foot button{font-size:12px;padding:3px 7px}
+iframe{display:block;width:100%;height:247px;border:0;background:#2c2018}.console{border-top:1px solid var(--border);padding:8px 12px;height:105px;overflow:auto}.console h4{font-size:12px;margin:0 0 5px;color:var(--quiet)}.console pre{font:12px/1.5 var(--mono);margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:#efcfad}.check-result{min-height:2.8em;margin-top:12px!important}.check-result.good{color:var(--lime)}.check-result.bad{color:#ffc992}footer{padding:20px 0 28px;color:var(--quiet);font-size:13px}
 @media(max-width:1120px){.lab{grid-template-columns:1fr 1fr}.instructions{grid-column:1/-1}.task{padding:14px}.check-result:empty{min-height:0;margin:0!important}}
 @media(max-width:680px){.lab{grid-template-columns:1fr}.progress{font-size:12px}.ticks{display:none}.edit{height:270px}}
 /* The campus scene and the workshop share the same night palette. */
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0b1025eb,#10152d9c 46%,transparent 76%)}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#1a100deb,#23150c9c 46%,transparent 76%)}
 .hero-copy{position:relative;z-index:2;width:min(64%,650px);padding:34px clamp(24px,4vw,58px)}
-.eyebrow{display:inline-block;margin:0 0 14px;padding:5px 10px;border-radius:6px;background:#ffd487;color:#32203a;font:700 12px/1.45 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.eyebrow{display:inline-block;margin:0 0 14px;padding:5px 10px;border-radius:6px;background:#ffd487;color:#412616;font:700 12px/1.45 var(--mono);letter-spacing:.06em;text-transform:uppercase}
 .hero h1{margin:0 0 16px;font-size:clamp(45px,6.5vw,87px);line-height:.91;letter-spacing:-.064em;color:#fff7e6;text-wrap:balance}
 .hero h1 span{display:block;color:#ffd58b}.hero-copy>p:last-of-type{max-width:37ch;color:#fff3de;margin:0}
-.hero-guide{position:absolute;z-index:1;width:clamp(220px,29vw,385px);height:auto;bottom:-28px;right:12%;filter:drop-shadow(0 14px 18px #140b1da0);pointer-events:none}
-.hero-link{display:inline-block;margin-top:19px;padding:7px 13px;border:1px solid #ffd58b92;border-radius:8px;background:#1b142add;color:#fff0d2;text-decoration:none;font-size:14px;font-weight:650}.hero-link:hover{background:#503154}
-.guide{margin:15px 0 13px;border-radius:12px;border:1px solid #dcaf77;background:#fff2d9;color:#332541;overflow:hidden}
-.guide summary{display:flex;align-items:center;gap:8px;padding:7px 9px;color:#362447;font-weight:760;list-style:none}.guide summary::-webkit-details-marker{display:none}.guide summary::after{content:"+";font:700 18px var(--mono);margin-left:auto;color:#754874}.guide[open] summary::after{content:"−"}.guide summary:focus-visible,.guide button:focus-visible{outline:2px solid #714582;outline-offset:-3px}
+.hero-guide{position:absolute;z-index:1;width:clamp(220px,29vw,385px);height:auto;bottom:-28px;right:12%;filter:drop-shadow(0 14px 18px #1a0d07a0);pointer-events:none}
+.hero-link{display:inline-block;margin-top:19px;padding:7px 13px;border:1px solid #ffd58b92;border-radius:8px;background:#2e1c13dd;color:#fff0d2;text-decoration:none;font-size:14px;font-weight:650}.hero-link:hover{background:#6c4126}
+.guide{margin:15px 0 13px;border-radius:12px;border:1px solid #dcaf77;background:#fff2d9;color:#382016;overflow:hidden}
+.guide summary{display:flex;align-items:center;gap:8px;padding:7px 9px;color:#482817;font-weight:760;list-style:none}.guide summary::-webkit-details-marker{display:none}.guide summary::after{content:"+";font:700 18px var(--mono);margin-left:auto;color:#8a4d29}.guide[open] summary::after{content:"−"}.guide summary:focus-visible,.guide button:focus-visible{outline:2px solid #88491f;outline-offset:-3px}
 .guide-avatar{flex:none;width:37px;height:37px;border-radius:50%;background:#ffcf92 url("fox-guide.png") 50% 8%/185% auto no-repeat;border:1px solid #c68b60}
 .guide-body{border-top:1px solid #e3c4a0;padding:10px;background-image:linear-gradient(#a07b6014 1px,transparent 1px),linear-gradient(90deg,#a07b6014 1px,transparent 1px);background-size:14px 14px}
-.task .guide-step{display:block;margin:0 0 5px;color:#694a6e;font:700 12px var(--mono)}.task .guide-title{display:block;color:#30243d;line-height:1.3;margin:0 0 4px}.task .guide p{padding:0;margin:0 0 8px;color:#48384f;line-height:1.42;font-size:13px}
-.guide pre{margin:0 0 9px;max-height:170px;padding:8px;overflow:auto;background:#251a3a;border-radius:7px;white-space:pre;font:12px/1.45 var(--mono);color:#fff1d3;scrollbar-color:#9677aa #261c36}.guide pre code{color:inherit}
-.guide-nav{display:flex;justify-content:space-between;gap:7px}.guide-nav button{border:1px solid #b98b83;border-radius:6px;background:#fff7e8;color:#4c3155;padding:4px 7px;font-size:12px;font-weight:700}.guide-nav button:hover:not(:disabled){background:#ffddb0}.guide-nav button:disabled{opacity:.55;cursor:default}
+.task .guide-step{display:block;margin:0 0 5px;color:#7a472d;font:700 12px var(--mono)}.task .guide-title{display:block;color:#3c251a;line-height:1.3;margin:0 0 4px}.task .guide p{padding:0;margin:0 0 8px;color:#543d31;line-height:1.42;font-size:13px}
+.guide pre{margin:0 0 9px;max-height:170px;padding:8px;overflow:auto;background:#34231a;border-radius:7px;white-space:pre;font:12px/1.45 var(--mono);color:#fff1d3;scrollbar-color:#9a7051 #39251a}.guide pre code{color:inherit}
+.guide-nav{display:flex;justify-content:space-between;gap:7px}.guide-nav button{border:1px solid #c28f69;border-radius:6px;background:#fff7e8;color:#56301a;padding:4px 7px;font-size:12px;font-weight:700}.guide-nav button:hover:not(:disabled){background:#ffddb0}.guide-nav button:disabled{opacity:.55;cursor:default}
 .task .check-result{min-height:0;margin-bottom:0}.check-result:empty{display:none}
 @media(max-width:900px){.hero-guide{right:6%}}
-@media(max-width:680px){.hero{min-height:325px;align-items:start;background-position:67% center}.hero::before{background:linear-gradient(90deg,#0c1028ef 6%,#11152cbf 56%,#10152c46)}.hero-copy{width:100%;padding:22px 16px 21px}.hero h1{font-size:clamp(40px,9.3vw,61px)}.hero-copy>p:last-of-type{max-width:min(30ch,61%);font-size:14px}.hero-guide{right:-29px;bottom:-11px;width:clamp(155px,44vw,231px)}}
-:root{--paper:#0e0c20;--panel:#19152d;--border:#382d58;--ink:#f5f0ff;--quiet:#c2b7d7;--lime:#c9ff82;--pink:#ff9edb;--cyan:#8df4ff;--violet:#d5b1ff}
-body{background:radial-gradient(ellipse at 0 22%,#27164b 0,transparent 45%),radial-gradient(ellipse at 100% 65%,#211c53 0,transparent 54%),var(--paper);min-height:100vh}
-header{background:#110e24c9}header .wrap{min-height:60px}.mark{background:linear-gradient(145deg,var(--cyan),#bda1ff);color:#201036;box-shadow:0 0 14px #9b84ff65}.ticks i.done{background:var(--lime);box-shadow:0 0 8px #b8ff6f65}
-.lab-title{display:flex;align-items:center;gap:12px}.lab-title::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,#60458a,transparent)}.card{border-radius:14px;box-shadow:0 12px 26px #09051b48}.instructions{border-top-color:#f18dd1}.editor-card{border-top-color:#b695ff}.preview-card{border-top-color:#78deec}.bar{background:linear-gradient(110deg,#251b40,#1b1732)}.task code{color:var(--pink)}.step,.ghost,.tab{background:#25203b;color:#ded3f4}.step[aria-pressed=true],.tab[aria-pressed=true]{background:color-mix(in srgb,var(--accent,#c1a2ff) 17%,#211831);border-color:var(--accent,#c1a2ff);color:var(--accent,#c1a2ff)}
-:is(.tab,.step):nth-child(1){--accent:#ff9edb}:is(.tab,.step):nth-child(2){--accent:#9aeaff}:is(.tab,.step):nth-child(3){--accent:#ffdc96}
-.run{background:linear-gradient(110deg,#b8ffab,#85f0ff);color:#15253b;box-shadow:0 0 14px #89edfc42}.run:hover{background:linear-gradient(110deg,#d6ffc4,#b7f6ff)}
-.edit{background:#100c21}.gutter{background:#161127;color:#aa97c4;flex:none;border-right:1px solid #2a2044}.source{position:relative;flex:1;min-width:0}.highlight,#code{position:absolute;inset:0;width:100%;height:100%;box-sizing:border-box;margin:0;border:0;padding:12px 10px;font:14px/22px var(--mono);font-variant-ligatures:none;tab-size:2;white-space:pre;letter-spacing:normal;word-spacing:normal}
-.highlight{overflow:hidden;color:#efe6ff;pointer-events:none}.highlight span{font:inherit}#code{background:transparent;color:transparent;caret-color:#e9deff;overflow:auto}#code::selection{background:#8552cb80;color:transparent}#code:focus{box-shadow:inset 0 0 0 1px #7056a3}
-.syntax-tag,.syntax-keyword{color:var(--pink)}.syntax-attribute,.syntax-property{color:var(--cyan)}.syntax-selector,.syntax-method{color:var(--violet)}.syntax-string{color:#b8f5a1}.syntax-number,.syntax-literal{color:#ffd582}.syntax-comment{color:#a196bc}.syntax-punctuation{color:#aca2e0}
-.token-help{position:fixed;z-index:20;max-width:min(300px,calc(100vw - 16px));padding:9px 12px;border-radius:8px;border:1px solid #8460bd;background:#251940;box-shadow:0 10px 24px #090415a0;color:#f3eaff;font-size:13px;pointer-events:none}
-.token-help strong{display:block;color:#a1f1ff;font:700 13px var(--mono);margin-bottom:4px;overflow-wrap:anywhere}
-.console{background:#17112c}.console pre{color:#c1f4ea}.check-result.good{color:#c8ff9d}.foot{flex-wrap:wrap}
+@media(max-width:680px){.hero{min-height:325px;align-items:start;background-position:67% center}.hero::before{background:linear-gradient(90deg,#1c110bef 6%,#27160bbf 56%,#311c1246)}.hero-copy{width:100%;padding:22px 16px 21px}.hero h1{font-size:clamp(40px,9.3vw,61px)}.hero-copy>p:last-of-type{max-width:min(30ch,61%);font-size:14px}.hero-guide{right:-29px;bottom:-11px;width:clamp(155px,44vw,231px)}}
+:root{--paper:#1d1512;--panel:#2c211a;--border:#5a3e2e;--ink:#fff2e1;--quiet:#dbc1a7;--lime:#ffd18d;--pink:#ffab8b;--cyan:#98ddd4;--violet:#ffdca8}
+body{background:radial-gradient(ellipse at 0 22%,#502b1c 0,transparent 45%),radial-gradient(ellipse at 100% 65%,#392317 0,transparent 54%),var(--paper);min-height:100vh}
+header{background:#231710e8}header .wrap{min-height:60px}.mark{background:linear-gradient(145deg,#ffdf9a,#ef984e);color:#351b10;box-shadow:0 0 14px #d88d4760}.ticks i.done{background:var(--lime);box-shadow:0 0 8px #edaa6065}
+.lab-title{display:flex;align-items:center;gap:12px}.lab-title::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,#996746,transparent)}.card{border-radius:14px;box-shadow:0 12px 26px #160a0648}.instructions{border-top-color:#de9865}.editor-card{border-top-color:#f0b875}.preview-card{border-top-color:#bc8e64}.bar{background:linear-gradient(110deg,#402b20,#30231c)}.task code{color:var(--pink)}.step,.ghost,.tab{background:#392920;color:#f0dac4}.step[aria-pressed=true],.tab[aria-pressed=true]{background:color-mix(in srgb,var(--accent,#ffd499) 17%,#38261b);border-color:var(--accent,#ffd499);color:var(--accent,#ffd499)}
+:is(.tab,.step):nth-child(1){--accent:#ffab8b}:is(.tab,.step):nth-child(2){--accent:#ffe0b2}:is(.tab,.step):nth-child(3){--accent:#ffbd79}
+.run{background:linear-gradient(110deg,#ffd18c,#f7a557);color:#351d11;box-shadow:0 0 14px #e9964642}.run:hover{background:linear-gradient(110deg,#ffe4b4,#ffba72)}
+.edit{background:#1d1512}.gutter{background:#281e19;color:#cbae95;flex:none;border-right:1px solid #50372a}.source{position:relative;flex:1;min-width:0}.highlight,#code{position:absolute;inset:0;width:100%;height:100%;box-sizing:border-box;margin:0;border:0;padding:12px 10px;font:14px/22px var(--mono);font-variant-ligatures:none;tab-size:2;white-space:pre;letter-spacing:normal;word-spacing:normal}
+.highlight{overflow:hidden;color:#fff1e3;pointer-events:none}.highlight span{font:inherit}#code{background:transparent;color:transparent;caret-color:#fff1e3;overflow:auto}#code::selection{background:#a4623380;color:transparent}#code:focus{box-shadow:inset 0 0 0 1px #b17c56}
+.syntax-tag,.syntax-keyword{color:var(--pink)}.syntax-attribute,.syntax-property{color:var(--cyan)}.syntax-selector,.syntax-method{color:var(--violet)}.syntax-string{color:#b6e4a7}.syntax-number,.syntax-literal{color:#f6c67b}.syntax-comment{color:#c0a895}.syntax-punctuation{color:#dbbfaa}
+.token-help{position:fixed;z-index:20;max-width:min(300px,calc(100vw - 16px));padding:9px 12px;border-radius:8px;border:1px solid #b68154;background:#3b271d;box-shadow:0 10px 24px #160a04a0;color:#fff2dd;font-size:13px;pointer-events:none}
+.token-help strong{display:block;color:#ffd694;font:700 13px var(--mono);margin-bottom:4px;overflow-wrap:anywhere}
+.console{background:#2a1e18}.console pre{color:#f3d4b0}.check-result.good{color:#c7e39d}.foot{flex-wrap:wrap}
 @media(forced-colors:active){.highlight{visibility:hidden}#code,#code::selection{color:CanvasText;caret-color:CanvasText}}
 </style>
 </head>
@@ -81,7 +81,7 @@ header{background:#110e24c9}header .wrap{min-height:60px}.mark{background:linear
 <script>
 'use strict';
 const byId = id => document.getElementById(id);
-const starter = {
+const originalStarter = {
   html: ['<main class="scene">','  <div class="moon"></div>','  <h1>Колледж</h1>','  <div class="building">','    \x3c!-- Здесь будут окна -->','  </div>','  <button id="switch">Свет</button>','</main>'].join('\n'),
   css: [
     'body { margin: 0; font-family: system-ui; color: #f5f1e0; }',
@@ -101,6 +101,114 @@ const starter = {
   ].join('\n'),
   js: '// Добавь обработчик клика для кнопки #switch.\n'
 };
+const starter = {
+  html: [
+    "\x3cmain",
+    "  class=\"scene\">",
+    "  \x3cdiv",
+    "    class=\"moon\">\x3c/div>",
+    "  \x3ch1>Колледж\x3c/h1>",
+    "  \x3cdiv",
+    "    class=\"building\">",
+    "    \x3c!-- Здесь будут окна -->",
+    "  \x3c/div>",
+    "  \x3cbutton",
+    "    id=\"switch\">Свет\x3c/button>",
+    "\x3c/main>"
+  ].join('\n'),
+  css: [
+    "/* Небо и луна */",
+    "body {",
+    "  margin: 0;",
+    "  font-family: system-ui, sans-serif;",
+    "  color: #fff1df;",
+    "}",
+    "",
+    ".scene {",
+    "  position: relative;",
+    "  min-height: 100vh;",
+    "  box-sizing: border-box;",
+    "  padding: 22px 16px;",
+    "  overflow: hidden;",
+    "  text-align: center;",
+    "  background:",
+    "    radial-gradient(circle at 15% 19%, #fff 1px, transparent 2px),",
+    "    radial-gradient(circle at 27% 10%, #ffdb9b 1px, transparent 2px),",
+    "    radial-gradient(circle at 70% 24%, #ffce89 1px, transparent 2px),",
+    "    linear-gradient(#131a34, #293f60 63%, #854a3c);",
+    "}",
+    "",
+    ".moon {",
+    "  position: absolute;",
+    "  top: 15px;",
+    "  right: 22px;",
+    "  width: 31px;",
+    "  height: 31px;",
+    "  border-radius: 50%;",
+    "  box-shadow: inset 8px -5px #ffe4a8, 0 0 17px #ffe4a84d;",
+    "}",
+    "",
+    "h1 {",
+    "  margin: 26px 0 24px;",
+    "  font-size: 22px;",
+    "  letter-spacing: 0.04em;",
+    "}",
+    "",
+    "/* Фасад и окна */",
+    ".building {",
+    "  position: relative;",
+    "  display: grid;",
+    "  grid-template-columns: repeat(3, minmax(0, 37px));",
+    "  justify-content: center;",
+    "  gap: 12px;",
+    "  box-sizing: border-box;",
+    "  width: min(100%, 220px);",
+    "  min-height: 72px;",
+    "  margin: 0 auto;",
+    "  padding: 17px 14px;",
+    "  border: 2px solid #ad754e;",
+    "  border-radius: 3px 3px 9px 9px;",
+    "  background: linear-gradient(#754935, #432e33);",
+    "  box-shadow: 0 9px 0 #241f2b, 0 12px 24px #1515228a;",
+    "}",
+    "",
+    ".building::before {",
+    "  position: absolute;",
+    "  bottom: 100%;",
+    "  inset-inline: -8px;",
+    "  height: 16px;",
+    "  content: \"\";",
+    "  background: linear-gradient(#dd9b56, #915139);",
+    "  clip-path: polygon(11% 0, 89% 0, 100% 100%, 0 100%);",
+    "}",
+    "",
+    ".window {",
+    "  aspect-ratio: 1;",
+    "  border: 2px solid #2d2630;",
+    "  border-radius: 4px;",
+    "  background: #344c71;",
+    "  box-shadow: inset 0 0 8px #131b30;",
+    "}",
+    "",
+    "button {",
+    "  margin-top: 18px;",
+    "  padding: 6px 16px;",
+    "  border: 1px solid #ffcb80;",
+    "  border-radius: 8px;",
+    "  background: #f7ad65;",
+    "  color: #321e19;",
+    "  font: 700 14px system-ui;",
+    "  cursor: pointer;",
+    "}",
+    "",
+    "button:hover {",
+    "  background: #ffd694;",
+    "}",
+    "",
+    "/* Добавь стиль для .window.lit */"
+  ].join('\n'),
+  js: originalStarter.js
+};
 const lessons = [
   {lang:'html', title:'Окна аудитории', text:'Внутри <code>.building</code> добавь хотя бы три элемента с классом <code>window</code>. Запусти код, чтобы увидеть окна.', fail:'Внутри .building должно быть хотя бы три элемента .window.', pass:'Окна появились.'},
   {lang:'css', title:'Тёплый свет', text:'Добавь правило <code>.window.lit</code> с жёлтым фоном. Для проверки стиля приложение на мгновение добавит окнам класс <code>lit</code>.', fail:'Нужны окна и заметная смена фона при добавлении класса lit.', pass:'Стиль включённого света работает.'},
@@ -109,13 +217,13 @@ const lessons = [
 const storageKey = 'college-night-workshop-v1';
 const guideSteps = [
   [
-    {title:'Найди место для окон', instruction:'Открой вкладку HTML над редактором. Найди этот блок. Окна нужно вписать внутрь него, на место комментария «Здесь будут окна».', code:'<div class="building">\n  \x3c!-- Здесь будут окна -->\n</div>'},
-    {title:'Впиши три окна', instruction:'Выдели только строку с комментарием и замени её этими тремя строками. Открывающий тег здания и закрывающий </div> под ним оставь на месте.', code:'<div class="window"></div>\n<div class="window"></div>\n<div class="window"></div>'},
-    {title:'Посмотри на результат', instruction:'Нажми «Запустить». В здании справа должны появиться три тёмных квадрата. Затем нажми «Проверить» и переходи к CSS.', code:''}
+    {title:'Найди место для окон', instruction:'Открой вкладку HTML над редактором. Найди этот блок. Окна нужно вписать внутрь него, на место комментария «Здесь будут окна».', code:'<div\n  class="building">\n  \x3c!-- Здесь будут окна -->\n</div>'},
+    {title:'Впиши три окна', instruction:'Выдели только строку с комментарием и замени её фрагментом из подсказки. Атрибут class у каждого окна пишется на новой строке. Теги здания вокруг вставки оставь на месте.', code:'<div\n  class="window"></div>\n<div\n  class="window"></div>\n<div\n  class="window"></div>'},
+    {title:'Посмотри на результат', instruction:'Нажми «Запустить». На фасаде справа должны появиться три синих окна. Затем нажми «Проверить» и переходи к CSS.', code:''}
   ],
   [
     {title:'Открой CSS и перейди в конец', instruction:'Нажми вкладку CSS над редактором. Прокрути код до конца и найди комментарий ниже. Допиши новое правило после него, за пределами предыдущих фигурных скобок.', code:'/* Добавь стиль для .window.lit */'},
-    {title:'Напиши правило для горящего окна', instruction:'Вставь эти три строки в конец CSS. Между .window и .lit пробел не нужен. Тогда правило сработает для окна, у которого есть оба класса.', code:'.window.lit {\n  background: #ffc85a;\n}'},
+    {title:'Напиши правило для горящего окна', instruction:'Вставь этот блок в конец CSS. Слитный селектор .window.lit выбирает окно, у которого есть оба класса. Свойство background задаёт жёлтый фон, а box-shadow добавляет свечение.', code:'.window.lit {\n  background: #ffc85a;\n  box-shadow: 0 0 15px #ffc85a80;\n}'},
     {title:'Проверь свет', instruction:'Нажми «Проверить». Лис проверит, меняется ли цвет окон при добавлении класса lit. При обычном запуске окна пока тёмные — выключатель подключим на следующем этапе.', code:''}
   ],
   [
@@ -130,7 +238,8 @@ let completed = [];
 try {
   const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
   for (const kind of Object.keys(starter)) {
-    if (typeof saved?.draft?.[kind] === 'string') draft[kind] = saved.draft[kind];
+    const previous = saved?.draft?.[kind];
+    if (typeof previous === 'string' && previous !== originalStarter[kind]) draft[kind] = previous;
   }
   if (Array.isArray(saved?.completed)) completed = [...new Set(saved.completed.filter(i => [0,1,2].includes(i)))];
 } catch {}
