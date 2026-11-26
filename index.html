@@ -64,7 +64,7 @@ header{background:#110e24c9}header .wrap{min-height:60px}.mark{background:linear
 'use strict';
 const byId = id => document.getElementById(id);
 const starter = {
-  html: ['<main class="scene">','  <div class="moon"></div>','  <h1>Колледж</h1>','  <div class="building">','    <!-- Здесь будут окна -->','  </div>','  <button id="switch">Свет</button>','</main>'].join('\n'),
+  html: ['<main class="scene">','  <div class="moon"></div>','  <h1>Колледж</h1>','  <div class="building">','    \x3c!-- Здесь будут окна -->','  </div>','  <button id="switch">Свет</button>','</main>'].join('\n'),
   css: [
     'body { margin: 0; font-family: system-ui; color: #f5f1e0; }',
     '.scene { min-height: 100vh; box-sizing: border-box; padding: 20px;',
@@ -172,10 +172,10 @@ function syntaxTokens(source, language) {
     tokens.push({start:index, end:index + value.length, value, kind, help});
   }
   if (language === 'html') {
-    const markup = /<!--[\s\S]*?(?:-->|$)|<!doctype[^>]*>|<\/?[a-z][\w:-]*(?:[^"'<>]|"[^"]*"|'[^']*')*>?|&(?:#x?[\da-f]+|[a-z]\w*);/gi;
+    const markup = /\x3c!--[\s\S]*?(?:-->|$)|<!doctype[^>]*>|<\/?[a-z][\w:-]*(?:[^"'<>]|"[^"]*"|'[^']*')*>?|&(?:#x?[\da-f]+|[a-z]\w*);/gi;
     for (const match of source.matchAll(markup)) {
       const value = match[0];
-      if (value.startsWith('<!--')) { add(match.index, value, 'comment'); continue; }
+      if (value.startsWith('\x3c!--')) { add(match.index, value, 'comment'); continue; }
       if (value.startsWith('&') || /^<!doctype/i.test(value)) { add(match.index, value, 'punctuation'); continue; }
       const parts = [...value.matchAll(/<\/?|\/?>|"[^"]*"|'[^']*'|[\w:-]+|=/g)];
       parts.forEach((part, index) => {
@@ -397,7 +397,7 @@ function run(index = null) {
   frame.setAttribute('sandbox', 'allow-scripts');
   const csp = "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'";
   const payload = {...draft, id: ++runId, check:index};
-  frame.srcdoc = '<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="' + csp + '"><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><script>(' + frameMain.toString() + ')(' + safeJSON(payload) + ');<\/script></body></html>';
+  frame.srcdoc = '<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="' + csp + '"><meta name="viewport" content="width=device-width, initial-scale=1"></head><body>\x3cscript>(' + frameMain.toString() + ')(' + safeJSON(payload) + ');<\/script></body></html>';
   byId('frame-slot').replaceChildren(frame);
   runTimer = setTimeout(() => {
     byId('run-status').textContent = 'Нет ответа';
