@@ -352,7 +352,8 @@ const punctuationHelp = {
   html: {
     '<':'Начинает открывающий тег.', '</':'Начинает закрывающий тег.',
     '>':'Завершает запись тега.', '/>':'Завершает тег элемента без содержимого.',
-    '=':'Связывает имя атрибута и его значение.'
+    '=':'Связывает имя атрибута и его значение.',
+    '"':'Кавычки ограничивают значение атрибута.', "'":'Кавычки ограничивают значение атрибута.'
   },
   css: {
     '{':'Начинает блок CSS-правила.', '}':'Заканчивает блок CSS-правила.',
@@ -388,7 +389,155 @@ const punctuationHelp = {
     '...':'Разворачивает элементы или собирает оставшиеся аргументы.'
   }
 };
-function explainToken(value, kind, language, before) {
+const sceneClasses = {
+  scene:'Контейнер всей ночной сцены. Его фон рисует звёзды и небо, внутри находятся луна и колледж.',
+  moon:'Луна в правом верхнем углу сцены. CSS скругляет её и рисует светящийся серп тенью.',
+  building:'Фасад колледжа. CSS размещает окна внутри него по рядам.',
+  window:'Одно окно колледжа. Оно сделано кнопкой, поэтому реагирует на клик и на клавиатуру.',
+  lit:'Свет в окне включён. Когда JavaScript убирает этот класс, окно теряет жёлтое свечение.'
+};
+const lessonCss = {
+  body:'Оформляет всю страницу предпросмотра. Здесь убирается стандартный отступ и задаются шрифт и цвет текста.',
+  h1:'Выбирает заголовок «Колледж» над фасадом.',
+  '.building::before':'Добавляет декоративный элемент перед содержимым фасада. В этом примере он рисует крышу.',
+  '.window:focus-visible':'Выделяет контуром окно, выбранное с клавиатуры, чтобы было видно, какое окно погаснет.',
+  '.window.lit':'Выбирает освещённые окна. После удаления lit правило перестаёт действовать на нажатое окно.',
+  position:'Определяет систему координат элемента. Здесь луна привязана к сцене, а крыша — к фасаду.',
+  relative:'Оставляет сцену или фасад на обычном месте и позволяет привязать к ним луну или крышу.',
+  absolute:'Размещает луну или крышу по координатам относительно их контейнера.',
+  'box-sizing':'Определяет, входят ли рамка и внутренние отступы в объявленные размеры.',
+  'border-box':'Включает отступы и рамку в заданную ширину и высоту сцены или фасада.',
+  overflow:'Управляет тем, что произойдёт с рисунком, вышедшим за границы сцены.',
+  hidden:'Обрезает часть декоративных элементов, которая выходит за края сцены.',
+  'text-align':'Управляет выравниванием текста. Заголовок колледжа расположен по центру.',
+  center:'Центрирует заголовок в text-align или группу окон в justify-content.',
+  'radial-gradient':'Рисует звезду: в указанной точке цветной круг быстро переходит в прозрачный фон.',
+  'linear-gradient':'Создаёт плавный переход цветов сверху вниз. Так нарисованы закатное небо, фасад и крыша.',
+  'circle at':'Задаёт круглую звезду и её центр. Первое число отмеряется слева, второе — сверху.',
+  circle:'Задаёт круглую форму звезды в радиальном градиенте.',
+  at:'Начинает координаты центра звезды, отсчитываемые от левого верхнего угла.',
+  transparent:'Полностью прозрачный цвет. Так звезда растворяется и видно небо под ней.',
+  top:'Отступ луны от верхнего края сцены.',
+  right:'Отступ луны от правого края сцены.',
+  bottom:'Положение крыши относительно нижнего края фасада. Значение 100% поднимает крышу над стеной.',
+  inset:'Рисует тень внутри фигуры. У луны такая тень образует серп.',
+  'letter-spacing':'Расстояние между буквами слова «Колледж».',
+  'grid-template-columns':'Задаёт колонки фасада. Если окон больше, новые окна переходят на следующий ряд.',
+  repeat:'Повторяет описание колонки. В примере repeat(3, …) делает по три окна в ряду.',
+  minmax:'Задаёт диапазон ширины колонки. Здесь колонка может сжиматься на узком экране.',
+  min:'Выбирает меньшее из двух значений. Так фасад остаётся не шире 220px и не выходит за края сцены.',
+  auto:'Автоматический отступ. Одинаковый margin слева и справа центрирует фасад.',
+  solid:'Сплошная линия рамки, в отличие от штриховой или пунктирной.',
+  'inset-inline':'Выставляет боковые края крыши. Отрицательный отступ делает крышу шире фасада.',
+  content:'Создаёт содержимое декоративного элемента. Пустая строка позволяет нарисовать крышу без текста.',
+  'clip-path':'Обрезает прямоугольник крыши до заданного контура.',
+  polygon:'Описывает точки контура крыши: две верхние точки ближе друг к другу, чем нижние.',
+  'aspect-ratio':'Отношение ширины окна к высоте. Значение 1 делает окно квадратным.',
+  pointer:'Курсор в виде руки подсказывает, что на окно можно нажать.',
+  outline:'Контур окна, выбранного клавиатурой. Он не меняет размеры окна.',
+  'outline-offset':'Расстояние между краем окна и контуром фокуса.',
+  'system-ui':'Шрифт интерфейса операционной системы.',
+  'sans-serif':'Запасная категория шрифтов без засечек.'
+};
+const sceneColors = {
+  '#fff1df':'Тёплый белый для текста заголовка и контура фокуса.',
+  '#fff':'Белый центр одной из звёзд.',
+  '#ffdb9b':'Кремово-жёлтая звезда в верхней части неба.',
+  '#ffce89':'Янтарная звезда ближе к правой стороне сцены.',
+  '#131a34':'Тёмно-синий верх ночного неба.',
+  '#293f60':'Синяя средняя часть неба, между ночью и заревом.',
+  '#854a3c':'Тёплое закатное зарево внизу сцены.',
+  '#ffe4a8':'Кремовый цвет лунного серпа.',
+  '#ffe4a84d':'Полупрозрачный цвет ореола вокруг луны. Последние две цифры задают прозрачность.',
+  '#ad754e':'Медный цвет рамки фасада.',
+  '#754935':'Тёплый коричневый верх стены.',
+  '#432e33':'Тёмный низ стены.',
+  '#241f2b':'Тёмное основание под фасадом.',
+  '#1515228a':'Полупрозрачная тень под фасадом.',
+  '#dd9b56':'Освещённая верхняя часть крыши.',
+  '#915139':'Тёмная нижняя часть крыши.',
+  '#2d2630':'Тёмный цвет оконной рамы.',
+  '#344c71':'Синее стекло погашенного окна.',
+  '#131b30':'Тень внутри погашенного окна.',
+  '#ffc85a':'Жёлтое стекло горящего окна. После удаления lit откроется синий фон обычного окна.',
+  '#ffc85a80':'Полупрозрачное янтарное свечение вокруг горящего окна.'
+};
+const sceneJs = {
+  const:'Объявляет переменную windows. Ссылка на список остаётся прежней, а классы отдельных окон можно менять.',
+  windows:'Список всех окон, найденных внутри фасада. Работает при любом количестве окон.',
+  win:'Одно окно из списка windows. Для него устанавливается свой обработчик, чтобы не погасить соседние окна.',
+  document:'Документ предпросмотра. В нём JavaScript ищет окна фасада.',
+  querySelectorAll:'Находит все окна по указанному CSS-селектору и возвращает их списком.',
+  forEach:'Берёт окна из списка по одному и назначает каждому отдельный обработчик.',
+  addEventListener:'Прикрепляет к текущему окну функцию, которая выполнится при клике.',
+  classList:'Список CSS-классов текущего окна. В нём есть window и, пока свет горит, lit.',
+  remove:'Удаляет lit у нажатого окна. Второй клик не включает свет обратно.'
+};
+const lessonComments = {
+  'Здесь будут окна':'Замени эту строку кнопками окон. Они должны остаться внутри блока building.',
+  'Небо и луна':'После этого комментария идут стили звёздного неба, луны и заголовка.',
+  'Фасад и окна':'После этого комментария идут стили стен, крыши и окон колледжа.',
+  'Добавь стиль для .window.lit':'Допиши после этого комментария правило .window.lit с цветом горящего стекла и свечением.',
+  'Добавь обработчик клика каждому окну.':'Замени комментарий кодом: найди все окна, затем назначь обработчик каждому.',
+  'Здесь погасим нажатое окно.':'Вставь на эту строку win.classList.remove("lit"); — она погасит только выбранное окно.'
+};
+function explainLessonToken(value, kind, language, before, attribute) {
+  const word = value.toLowerCase();
+  const unquoted = value.replace(/^["'\x60]|["'\x60]$/g, '');
+  if (kind === 'comment') {
+    const caption = value.replace(/^(?:\x3c!--|\/[/*])\s*|\s*(?:-->|\*\/)$/g, '').trim();
+    return Object.hasOwn(lessonComments, caption) ? lessonComments[caption] : '';
+  }
+  if (language === 'html') {
+    if (kind === 'text' && word === 'колледж') return 'Видимая надпись над фасадом. Её можно заменить своим названием.';
+    if (kind === 'string' && attribute === 'class' && Object.hasOwn(sceneClasses, unquoted)) return sceneClasses[unquoted];
+    if (kind === 'string' && attribute === 'type' && unquoted === 'button') return 'Обычная кнопка. В мастер-классе она представляет окно и ждёт нажатия.';
+    if (kind === 'string' && attribute === 'aria-label' && /^окно\s+\d+$/i.test(unquoted)) return 'Доступное имя «' + unquoted + '». Номер отличает это окно от соседних для программ чтения с экрана.';
+  }
+  if (language === 'css') {
+    if (kind === 'selector' && word.startsWith('.') && Object.hasOwn(sceneClasses, word.slice(1))) return sceneClasses[word.slice(1)];
+    if (kind === 'number' && Object.hasOwn(sceneColors, word)) return sceneColors[word];
+    if (kind === 'string' && !unquoted && /\bcontent\s*:\s*$/.test(before)) return 'Пустая строка. Создаёт место для декоративной крыши без текста.';
+    if (kind === 'number') return describeSceneNumber(value, before);
+    if (kind !== 'string' && Object.hasOwn(lessonCss, word)) return lessonCss[word];
+  }
+  if (language === 'js') {
+    if (kind === 'string') {
+      if (unquoted === '.building .window') return 'CSS-селектор: находит все элементы window внутри фасада building.';
+      if (unquoted === 'click') return 'Название события, которое срабатывает при нажатии на окно.';
+      if (unquoted === 'lit') return 'Имя класса, который убирается у выбранного окна. Без него жёлтое свечение исчезает.';
+    } else if (Object.hasOwn(sceneJs, value)) return sceneJs[value];
+  }
+  return '';
+}
+function describeSceneNumber(value, before) {
+  const line = before.slice(before.lastIndexOf('\n') + 1);
+  const property = line.match(/^\s*([\w-]+)\s*:/)?.[1];
+  if (property === 'grid-template-columns' && /^\s*grid-template-columns\s*:\s*repeat\(\s*$/.test(line)) return value + ' — количество колонок, а не ограничение на общее число окон.';
+  if (/radial-gradient\(\s*circle at\b/i.test(line)) {
+    return /circle at\s*$/.test(line) ? value + ' — горизонтальное положение звезды от левого края сцены.'
+      : /circle at\s+\S+\s+$/.test(line) ? value + ' — вертикальное положение звезды от верхнего края сцены.'
+      : value + ' — расстояние от центра звезды, на котором действует указанный цвет.';
+  }
+  if (/\bpolygon\(/.test(line)) return value + ' — координата одной из вершин крыши относительно её прямоугольной области.';
+  if (property === 'aspect-ratio') return value + ' — отношение ширины окна к высоте. Единица делает окно квадратным.';
+  if (property === 'min-height' && value.endsWith('vh')) return value + ' — минимальная высота сцены, равная высоте области предпросмотра.';
+  if (property === 'bottom' && value === '100%') return 'Поднимает нижний край крыши на полную высоту фасада, чтобы крыша оказалась над ним.';
+  const dimensions = {
+    margin:'внешний отступ', padding:'внутренний отступ', top:'отступ сверху', right:'отступ справа',
+    width:'ширина', height:'высота', 'min-height':'минимальная высота', gap:'промежуток между окнами',
+    'grid-template-columns':'граница ширины колонки', 'inset-inline':'боковой отступ крыши',
+    'border-radius':'радиус скругления', border:'толщина рамки', outline:'толщина контура фокуса',
+    'outline-offset':'расстояние от окна до контура фокуса', 'font-size':'размер букв заголовка',
+    'letter-spacing':'дополнительное расстояние между буквами', 'box-shadow':'смещение или размытие тени'
+  };
+  if (property && Object.hasOwn(dimensions, property)) return value + ' — ' + dimensions[property] + ' в этом правиле.';
+  if (/linear-gradient\(/.test(line) && value.endsWith('%')) return value + ' — точка перехода цвета по высоте градиента.';
+  return '';
+}
+function explainToken(value, kind, language, before, attribute) {
+  const lessonHelp = explainLessonToken(value, kind, language, before, attribute);
+  if (lessonHelp) return lessonHelp;
   const word = language === 'js' ? value : value.toLowerCase();
   const reference = syntaxReference[language];
   if (!['comment','string','text','unknown'].includes(kind) && Object.hasOwn(reference, word)) return reference[word];
@@ -405,8 +554,8 @@ function explainToken(value, kind, language, before) {
 function syntaxTokens(source, language) {
   const tokens = [];
   let covered = 0;
-  function push(index, value, kind) {
-    const help = explainToken(value, kind, language, source.slice(Math.max(0,index - 48),index));
+  function push(index, value, kind, attribute) {
+    const help = explainToken(value, kind, language, source.slice(Math.max(0,index - 200),index), attribute);
     tokens.push({start:index, end:index + value.length, value, kind, help});
   }
   function fillGap(end, kind) {
@@ -415,9 +564,9 @@ function syntaxTokens(source, language) {
     }
     covered = end;
   }
-  function add(index, value, kind, gapKind = 'unknown') {
-    if (index > covered) fillGap(index, gapKind);
-    push(index, value, kind);
+  function add(index, value, kind, attribute) {
+    if (index > covered) fillGap(index, 'unknown');
+    push(index, value, kind, attribute);
     covered = index + value.length;
   }
   if (language === 'html') {
@@ -430,8 +579,17 @@ function syntaxTokens(source, language) {
       const parts = [...value.matchAll(/<\/?|\/?>|"[^"]*"|'[^']*'|[\w:-]+|=/g)];
       parts.forEach((part, index) => {
         const piece = part[0];
-        const kind = index === 1 ? 'tag' : /^['"]/.test(piece) ? 'string' : /^[\w:-]+$/.test(piece) ? (parts[index-1]?.[0] === '=' ? 'string' : 'attribute') : 'punctuation';
-        add(match.index + part.index, piece, kind);
+        const attribute = parts[index-1]?.[0] === '=' ? parts[index-2]?.[0].toLowerCase() : undefined;
+        const kind = index === 1 ? 'tag' : /^['"]/.test(piece) ? 'string' : /^[\w:-]+$/.test(piece) ? (attribute ? 'string' : 'attribute') : 'punctuation';
+        const position = match.index + part.index;
+        if (attribute === 'class' && /\s/.test(piece)) {
+          for (const member of piece.matchAll(/["']|[^\s"']+/g)) {
+            const memberKind = /^["']$/.test(member[0]) ? 'punctuation' : 'string';
+            add(position + member.index, member[0], memberKind, attribute);
+          }
+        } else {
+          add(position, piece, kind, attribute);
+        }
       });
       fillGap(match.index + value.length, 'unknown');
     }
@@ -439,7 +597,7 @@ function syntaxTokens(source, language) {
     return tokens;
   }
   const pattern = language === 'css'
-    ? /\/\*[\s\S]*?(?:\*\/|$)|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|#[-\p{L}\p{N}_]+|(?:\.[-\p{L}_][-\p{L}\p{N}_]*)+|@[-\p{L}\p{N}_]+|(?:\d*\.)?\d+(?:[a-z]+|%)?|[-\p{L}_][-\p{L}\p{N}_]*|[{}:;()[\],>+~*=]/giu
+    ? /\/\*[\s\S]*?(?:\*\/|$)|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|#[-\p{L}\p{N}_]+|(?:\.[-\p{L}_][-\p{L}\p{N}_]*)+(?:::{0,1}[-\p{L}_][-\p{L}\p{N}_]*)?|@[-\p{L}\p{N}_]+|-?(?:\d*\.)?\d+(?:[a-z]+|%)?|[-\p{L}_][-\p{L}\p{N}_]*|[{}:;()[\],>+~*=]/giu
     : /\/\/[^\n]*|\/\*[\s\S]*?(?:\*\/|$)|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|[\x60](?:\\.|[^\x60\\])*[\x60]|\b(?:0[xob][\da-f]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)n?\b|[$_\p{ID_Start}][$_\p{ID_Continue}]*|=>|===?|!==?|<=|>=|\?\?|\?\.|&&|\|\||\.\.\.|\+\+|--|\+=|-=|\*\*|[{}()[\].,;:+\-*/%=!?<>]/giu;
   for (const match of source.matchAll(pattern)) {
     const value = match[0];
@@ -447,7 +605,7 @@ function syntaxTokens(source, language) {
     let kind = 'punctuation';
     if (/^\/[/*]/.test(value)) kind = 'comment';
     else if (/^['"\x60]/.test(value)) kind = 'string';
-    else if (/^(?:\d|\.\d)/.test(value)) kind = 'number';
+    else if (/^-?(?:\d|\.\d)/.test(value)) kind = 'number';
     else if (language === 'css') {
       const next = source.slice(end, end + 300);
       if (value.startsWith('@')) kind = 'keyword';
