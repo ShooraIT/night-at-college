@@ -13,12 +13,36 @@ header{border-bottom:1px solid var(--border)}header .wrap{display:flex;align-ite
 iframe{display:block;width:100%;height:247px;border:0;background:#101421}.console{border-top:1px solid var(--border);padding:8px 12px;height:105px;overflow:auto}.console h4{font-size:12px;margin:0 0 5px;color:var(--quiet)}.console pre{font:12px/1.5 var(--mono);margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:#c8d5e2}.check-result{min-height:2.8em;margin-top:12px!important}.check-result.good{color:var(--lime)}.check-result.bad{color:#ffc992}footer{padding:20px 0 28px;color:var(--quiet);font-size:13px}
 @media(max-width:1120px){.lab{grid-template-columns:1fr 1fr}.instructions{grid-column:1/-1}.task{padding:14px}.check-result:empty{min-height:0;margin:0!important}}
 @media(max-width:680px){.lab{grid-template-columns:1fr}.sky{left:28%;opacity:.42}.hero{min-height:214px}.hero-copy{padding-block:24px}.progress{font-size:12px}.ticks{display:none}.edit{height:270px}}
+/* The campus scene and the workshop share the same night palette. */
+:root{--paper:#0e0c20;--panel:#19152d;--border:#382d58;--ink:#f5f0ff;--quiet:#c2b7d7;--lime:#c9ff82;--pink:#ff9edb;--cyan:#8df4ff;--violet:#d5b1ff}
+body{background:radial-gradient(ellipse at 0 22%,#27164b 0,transparent 45%),radial-gradient(ellipse at 100% 65%,#211c53 0,transparent 54%),var(--paper);min-height:100vh}
+header{background:#110e24c9}header .wrap{min-height:60px}.mark{background:linear-gradient(145deg,var(--cyan),#bda1ff);color:#201036;box-shadow:0 0 14px #9b84ff65}.ticks i.done{background:var(--lime);box-shadow:0 0 8px #b8ff6f65}
+.hero{min-height:265px;isolation:isolate;border-color:#59428a;background:linear-gradient(102deg,#20143e 8%,#251449 48%,#302663 72%,#161638);box-shadow:0 18px 50px #07041880}
+.hero-copy{max-width:720px}.eyebrow{color:var(--cyan)}.hero h1 span{color:var(--pink);background:linear-gradient(90deg,#ffb4df 5%,#d6b0ff 56%,#95ecff);background-clip:text;-webkit-text-fill-color:transparent}.hero-copy>p:last-child{color:#e0d4f4}
+.sky{inset:0 0 0 43%;background:radial-gradient(ellipse at 60% 89%,#ac54d68f 0,transparent 52%);mask-image:linear-gradient(90deg,transparent,#000 12%)}
+.sky::before{content:"";position:absolute;width:126%;height:86%;left:0;top:-35%;border-radius:50%;transform:rotate(-19deg);background:conic-gradient(from 65deg,transparent 15%,#74e9f1a6 28%,#956bff5e 43%,#e259c36e 55%,transparent 72%);filter:blur(21px);opacity:.73}
+.sky::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 22% 28%,#f5baff 0 1px,transparent 2px),radial-gradient(circle at 33% 15%,#fff 0 1px,transparent 2px),radial-gradient(circle at 59% 32%,#a1edff 0 1px,transparent 2px),radial-gradient(circle at 89% 32%,#ffd7bd 0 1px,transparent 2px),radial-gradient(circle at 69% 13%,#ffc8ff 0 1px,transparent 2px);pointer-events:none}
+.moon{width:clamp(50px,6.5vw,95px);top:14%;right:16%;background:radial-gradient(circle at 40% 38%,#fff7df,#fdd796 70%);box-shadow:0 0 32px #ffc5939e,0 0 0 10px #ffc59314,0 0 0 22px #fcbfd310}
+.school{z-index:1;right:12%;width:63%;height:48%;border-top:4px solid #8f72be;background:linear-gradient(#30254b,#201632);box-shadow:14px 8px 0 #160f27;gap:11px;padding:15px 16px 16px}
+.school::before{height:32px;background:linear-gradient(#73529e,#493268)}.school::after{content:"";position:absolute;bottom:100%;left:50%;translate:-50% -5px;width:10px;aspect-ratio:1;border-radius:50%;background:#ffe1b2;box-shadow:0 0 10px #ffd096}
+.school b{border:2px solid #231632;background:#503969}.school b:nth-child(4n+1){background:#ffdb83;box-shadow:0 0 13px #ffc45183}.school b:nth-child(4n+3){background:#c59dff;box-shadow:0 0 11px #a86bff82}.school b:nth-child(4n+4){background:#80e6fa;box-shadow:0 0 11px #60d7ff76}
+.lab-title{display:flex;align-items:center;gap:12px}.lab-title::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,#60458a,transparent)}.card{border-radius:14px;box-shadow:0 12px 26px #09051b48}.instructions{border-top-color:#f18dd1}.editor-card{border-top-color:#b695ff}.preview-card{border-top-color:#78deec}.bar{background:linear-gradient(110deg,#251b40,#1b1732)}.task code{color:var(--pink)}.step,.ghost,.tab{background:#25203b;color:#ded3f4}.step[aria-pressed=true],.tab[aria-pressed=true]{background:color-mix(in srgb,var(--accent,#c1a2ff) 17%,#211831);border-color:var(--accent,#c1a2ff);color:var(--accent,#c1a2ff)}
+:is(.tab,.step):nth-child(1){--accent:#ff9edb}:is(.tab,.step):nth-child(2){--accent:#9aeaff}:is(.tab,.step):nth-child(3){--accent:#ffdc96}
+.run{background:linear-gradient(110deg,#b8ffab,#85f0ff);color:#15253b;box-shadow:0 0 14px #89edfc42}.run:hover{background:linear-gradient(110deg,#d6ffc4,#b7f6ff)}
+.edit{background:#100c21}.gutter{background:#161127;color:#aa97c4;flex:none;border-right:1px solid #2a2044}.source{position:relative;flex:1;min-width:0}.highlight,#code{position:absolute;inset:0;width:100%;height:100%;box-sizing:border-box;margin:0;border:0;padding:12px 10px;font:14px/22px var(--mono);font-variant-ligatures:none;tab-size:2;white-space:pre;letter-spacing:normal;word-spacing:normal}
+.highlight{overflow:hidden;color:#efe6ff;pointer-events:none}.highlight span{font:inherit}#code{background:transparent;color:transparent;caret-color:#e9deff;overflow:auto}#code::selection{background:#8552cb80;color:transparent}#code:focus{box-shadow:inset 0 0 0 1px #7056a3}
+.syntax-tag,.syntax-keyword{color:var(--pink)}.syntax-attribute,.syntax-property{color:var(--cyan)}.syntax-selector,.syntax-method{color:var(--violet)}.syntax-string{color:#b8f5a1}.syntax-number,.syntax-literal{color:#ffd582}.syntax-comment{color:#a196bc}.syntax-punctuation{color:#aca2e0}
+.token-help{position:fixed;z-index:20;max-width:min(300px,calc(100vw - 16px));padding:9px 12px;border-radius:8px;border:1px solid #8460bd;background:#251940;box-shadow:0 10px 24px #090415a0;color:#f3eaff;font-size:13px;pointer-events:none}
+.token-help strong{display:block;color:#a1f1ff;font:700 13px var(--mono);margin-bottom:4px;overflow-wrap:anywhere}
+.console{background:#17112c}.console pre{color:#c1f4ea}.check-result.good{color:#c8ff9d}.foot{flex-wrap:wrap}
+@media(max-width:680px){.hero{min-height:228px}.sky{inset:0 0 0 30%;opacity:.56}.hero h1{max-width:12ch}.school{width:74%;right:3%;gap:7px;padding-inline:10px}}
+@media(forced-colors:active){.highlight{visibility:hidden}#code,#code::selection{color:CanvasText;caret-color:CanvasText}}
 </style>
 </head>
 <body>
 <header><div class="wrap"><div class="brand"><span class="mark" aria-hidden="true">◒</span> Ночная лаборатория</div><div class="progress"><span id="progress">0 из 3 готово</span><span class="ticks" aria-hidden="true"><i></i><i></i><i></i></span></div></div></header>
 <main class="wrap">
-<section class="hero"><div class="hero-copy"><p class="eyebrow">Практикум по веб-разработке</p><h1>Ночь в колледже</h1><p>После пар колледж опустел. Собери ночную сцену и включи свет в аудитории с помощью кода.</p></div><div class="sky" aria-hidden="true"><div class="moon"></div><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><div class="school"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div></section>
+<section class="hero"><div class="hero-copy"><p class="eyebrow">Практикум по веб-разработке</p><h1>Ночь <span>в колледже</span></h1><p>После пар колледж опустел. Собери ночную сцену и включи свет в аудитории с помощью кода.</p></div><div class="sky" aria-hidden="true"><div class="moon"></div><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><div class="school"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div></section>
 <h2 class="lab-title">Рабочее место</h2>
 <div class="lab">
 <section class="card instructions"><div class="bar"><h3>Задания</h3><span class="badge" id="chapter"></span></div><div class="task">
@@ -28,13 +52,14 @@ iframe{display:block;width:100%;height:247px;border:0;background:#101421}.consol
 <div class="actions"><button type="button" class="ghost" id="check">Проверить</button><button type="button" class="ghost" id="next" hidden>Дальше</button></div>
 <p id="check-result" class="check-result" role="status"></p>
 </div></section>
-<section class="card"><div class="bar editorBar"><div class="tabs" aria-label="Язык редактора"><button type="button" class="tab" data-lang="html">HTML</button><button type="button" class="tab" data-lang="css">CSS</button><button type="button" class="tab" data-lang="js">JS</button></div><button type="button" class="run" id="run">▶ Запустить</button></div>
-<div class="edit"><pre class="gutter" id="gutter" aria-hidden="true"></pre><textarea id="code" aria-label="Редактор кода" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off"></textarea></div>
-<div class="foot"><span>Ctrl/⌘ + Enter</span><button type="button" class="ghost" id="reset">Сбросить вкладку</button></div></section>
-<section class="card"><div class="bar"><h3>Результат</h3><span class="badge" id="run-status" role="status">Готово</span></div><div id="frame-slot"></div><div class="console"><h4>Консоль</h4><pre id="console" role="log" aria-label="Вывод консоли"></pre></div></section>
+<section class="card editor-card"><div class="bar editorBar"><div class="tabs" aria-label="Язык редактора"><button type="button" class="tab" data-lang="html">HTML</button><button type="button" class="tab" data-lang="css">CSS</button><button type="button" class="tab" data-lang="js">JS</button></div><button type="button" class="run" id="run">▶ Запустить</button></div>
+<div class="edit"><pre class="gutter" id="gutter" aria-hidden="true"></pre><div class="source"><pre class="highlight" id="highlight" aria-hidden="true"></pre><textarea id="code" aria-label="Редактор кода" aria-describedby="editor-help" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off"></textarea></div></div>
+<div class="foot"><span id="editor-help">Ctrl/⌘ + Enter · запуск<br>Наведение или Alt + I · подсказка</span><button type="button" class="ghost" id="reset">Сбросить вкладку</button></div></section>
+<section class="card preview-card"><div class="bar"><h3>Результат</h3><span class="badge" id="run-status" role="status">Готово</span></div><div id="frame-slot"></div><div class="console"><h4>Консоль</h4><pre id="console" role="log" aria-label="Вывод консоли"></pre></div></section>
 </div>
 <footer>Черновик и пройденные задания сохраняются в этом браузере, если доступно локальное хранилище.</footer>
 </main>
+<div id="token-help" class="token-help" role="tooltip" aria-live="polite" hidden><strong id="token-name"></strong><span id="token-description"></span></div>
 <script>
 'use strict';
 const byId = id => document.getElementById(id);
@@ -87,9 +112,157 @@ let runId = 0;
 let runTimer;
 let checkFor = null;
 let logLines = [];
+
+const syntaxReference = {
+  html: {
+    main:'Основная область страницы.', div:'Контейнер для группировки элементов.', h1:'Главный заголовок страницы.',
+    button:'Кнопка, на которую можно нажать.', span:'Строчный контейнер для части текста.',
+    p:'Абзац текста.', a:'Ссылка. Адрес задаётся атрибутом href.', img:'Изображение. Путь задаётся в src, описание — в alt.',
+    class:'Классы элемента. В CSS они выбираются через точку.', id:'Уникальное имя элемента. В CSS оно выбирается через #.',
+    style:'Стили, заданные прямо на элементе.', title:'Краткое описание или название.', href:'Адрес, по которому ведёт ссылка.'
+  },
+  css: {
+    background:'Задаёт фон. Можно использовать цвет, градиент или изображение.', color:'Задаёт цвет текста.',
+    display:'Определяет, как элемент и его содержимое участвуют в раскладке.',
+    flex:'Включает гибкое размещение дочерних элементов.', grid:'Включает раскладку по строкам и столбцам.',
+    'linear-gradient':'Создаёт плавный переход между цветами по прямой.',
+    margin:'Задаёт внешний отступ вокруг элемента.', padding:'Задаёт внутренний отступ между содержимым и границей.',
+    'border-radius':'Скругляет углы элемента.', 'box-shadow':'Добавляет тень или свечение вокруг элемента.',
+    width:'Задаёт ширину элемента.', height:'Задаёт высоту элемента.', 'min-height':'Задаёт минимальную высоту элемента.',
+    'font-family':'Задаёт шрифт и запасные варианты.', 'font-size':'Задаёт размер текста.',
+    'justify-content':'Распределяет свободное место вдоль главной оси.', gap:'Задаёт промежутки между элементами.',
+    border:'Задаёт толщину, тип и цвет рамки.', cursor:'Меняет вид указателя над элементом.',
+    '.window.lit':'Выбирает элементы, у которых одновременно есть классы window и lit.'
+  },
+  js: {
+    const:'Объявляет переменную, которой нельзя присвоить другое значение.', let:'Объявляет переменную, значение которой можно изменить.',
+    if:'Выполняет блок, если условие истинно.', else:'Выполняет блок, если предыдущее условие ложно.',
+    function:'Объявляет функцию — блок кода, который можно вызвать.', return:'Завершает функцию и может вернуть значение.',
+    for:'Повторяет действия в цикле.', while:'Повторяет блок, пока условие истинно.',
+    '=>':'Создаёт стрелочную функцию.', document:'Даёт доступ к элементам текущей страницы.',
+    querySelector:'Возвращает первый элемент, подходящий под CSS-селектор, или null.',
+    querySelectorAll:'Возвращает все элементы, подходящие под CSS-селектор.',
+    addEventListener:'Связывает событие, например click, с функцией-обработчиком.',
+    onclick:'Свойство, которому можно присвоить функцию для обработки клика.',
+    classList:'Даёт доступ к списку CSS-классов элемента.', toggle:'Добавляет класс, если его нет, или убирает, если он уже есть.',
+    forEach:'Вызывает функцию для каждого элемента коллекции.', console:'Объект для вывода сообщений при отладке.',
+    log:'Выводит сообщение или значение в консоль.', 'true':'Логическое значение «истина».',
+    'false':'Логическое значение «ложь».', 'null':'Явное отсутствие значения.', 'undefined':'Значение ещё не задано.'
+  }
+};
+const jsKeywords = new Set('async await break case catch class const continue debugger default delete do else export extends finally for function if import in instanceof let new of return static super switch this throw try typeof var void while yield true false null undefined'.split(' '));
+const mirror = byId('highlight');
+const tokenHelp = byId('token-help');
+const tokenName = byId('token-name');
+const tokenDescription = byId('token-description');
+let highlightedTokens = [];
+function syntaxTokens(source, language) {
+  const tokens = [];
+  function add(index, value, kind) {
+    const word = language === 'js' ? value : value.toLowerCase();
+    const descriptions = syntaxReference[language];
+    const help = Object.hasOwn(descriptions, word) ? descriptions[word] : ({
+      tag:'HTML-тег обозначает тип и границы элемента.',
+      attribute:'Атрибут задаёт параметр HTML-элемента.',
+      property:'CSS-свойство определяет, какую часть оформления изменить.',
+      selector:'CSS-селектор определяет, к каким элементам применить правило.',
+      keyword:'Зарезервированное слово JavaScript.',
+      method:'Вызов функции с аргументами в круглых скобках.'
+    })[kind];
+    tokens.push({start:index, end:index + value.length, value, kind, help});
+  }
+  if (language === 'html') {
+    const markup = /<!--[\s\S]*?(?:-->|$)|<!doctype[^>]*>|<\/?[a-z][\w:-]*(?:[^"'<>]|"[^"]*"|'[^']*')*>?|&(?:#x?[\da-f]+|[a-z]\w*);/gi;
+    for (const match of source.matchAll(markup)) {
+      const value = match[0];
+      if (value.startsWith('<!--')) { add(match.index, value, 'comment'); continue; }
+      if (value.startsWith('&') || /^<!doctype/i.test(value)) { add(match.index, value, 'punctuation'); continue; }
+      const parts = [...value.matchAll(/<\/?|\/?>|"[^"]*"|'[^']*'|[\w:-]+|=/g)];
+      parts.forEach((part, index) => {
+        const piece = part[0];
+        const kind = index === 1 ? 'tag' : /^['"]/.test(piece) ? 'string' : /^[\w:-]+$/.test(piece) ? (parts[index-1]?.[0] === '=' ? 'string' : 'attribute') : 'punctuation';
+        add(match.index + part.index, piece, kind);
+      });
+    }
+    return tokens;
+  }
+  const pattern = language === 'css'
+    ? /\/\*[\s\S]*?(?:\*\/|$)|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|#[0-9a-f]{3,8}\b(?![\w-])|(?:\.[a-z_-][\w-]*)+|#[\w-]+|@[\w-]+|(?:\d*\.)?\d+(?:[a-z]+|%)?|--[\w-]+|[a-z_][\w-]*|[{}:;()[\],>+~*=]/gi
+    : /\/\/[^\n]*|\/\*[\s\S]*?(?:\*\/|$)|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|[\x60](?:\\.|[^\x60\\])*[\x60]|\b(?:0[xob][\da-f]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)n?\b|[$a-z_][$\w]*|=>|===?|!==?|\?\?|\?\.|&&|\|\||[{}()[\].,;:+\-*/%=!?<>]/gi;
+  for (const match of source.matchAll(pattern)) {
+    const value = match[0];
+    const end = match.index + value.length;
+    let kind = 'punctuation';
+    if (/^\/[/*]/.test(value)) kind = 'comment';
+    else if (/^['"\x60]/.test(value)) kind = 'string';
+    else if (/^(?:\d|\.\d)/.test(value)) kind = 'number';
+    else if (language === 'css') {
+      const next = source.slice(end, end + 300);
+      if (value.startsWith('@')) kind = 'keyword';
+      else if (/^[.#a-z_-]/i.test(value) && /^[^;{}]*\{/.test(next)) kind = 'selector';
+      else if (/^#[0-9a-f]{3,8}$/i.test(value)) kind = 'number';
+      else if (/^(?:--|[a-z_])/i.test(value)) kind = /^\s*:/.test(next) ? 'property' : /^\s*\(/.test(next) ? 'method' : 'literal';
+    } else if (jsKeywords.has(value) || value === '=>') kind = 'keyword';
+    else if (/^[$a-z_]/i.test(value)) kind = /^\s*\(/.test(source.slice(end, end + 100)) ? 'method' : 'identifier';
+    add(match.index, value, kind);
+  }
+  return tokens;
+}
+function hideTokenHelp() {
+  tokenHelp.hidden = true;
+}
+function syncHighlightScroll() {
+  mirror.style.width = editor.clientWidth + 'px';
+  mirror.style.height = editor.clientHeight + 'px';
+  gutter.scrollTop = editor.scrollTop;
+  mirror.scrollTop = editor.scrollTop;
+  mirror.scrollLeft = editor.scrollLeft;
+  hideTokenHelp();
+}
+function renderHighlight() {
+  const source = editor.value;
+  const fragment = document.createDocumentFragment();
+  highlightedTokens = syntaxTokens(source, lang);
+  let offset = 0;
+  for (const token of highlightedTokens) {
+    fragment.append(source.slice(offset, token.start));
+    const span = document.createElement('span');
+    span.className = 'syntax-' + token.kind;
+    span.textContent = token.value;
+    fragment.append(span);
+    if (token.help) token.element = span;
+    offset = token.end;
+  }
+  fragment.append(source.slice(offset) + '\n');
+  mirror.replaceChildren(fragment);
+  syncHighlightScroll();
+}
+function showTokenHelp(token, x, y) {
+  tokenName.textContent = token.value;
+  tokenDescription.textContent = token.help;
+  tokenHelp.hidden = false;
+  const left = Math.max(8, Math.min(x + 12, window.innerWidth - tokenHelp.offsetWidth - 8));
+  const top = y + tokenHelp.offsetHeight + 16 <= window.innerHeight ? y + 16 : Math.max(8, y - tokenHelp.offsetHeight - 8);
+  Object.assign(tokenHelp.style, {left:left + 'px', top:top + 'px'});
+}
+editor.addEventListener('pointermove', event => {
+  if (event.pointerType === 'touch' || event.buttons) { hideTokenHelp(); return; }
+  const x = event.clientX;
+  const y = event.clientY;
+  const bounds = editor.getBoundingClientRect();
+  if (x >= bounds.left + editor.clientWidth || y >= bounds.top + editor.clientHeight) { hideTokenHelp(); return; }
+  const token = highlightedTokens.find(item => item.element && [...item.element.getClientRects()].some(rect =>
+    x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom));
+  if (token) showTokenHelp(token, x, y);
+  else hideTokenHelp();
+});
+editor.addEventListener('pointerleave', hideTokenHelp);
+editor.addEventListener('blur', hideTokenHelp);
+window.addEventListener('scroll', hideTokenHelp, {passive:true});
+new ResizeObserver(syncHighlightScroll).observe(editor);
 function updateGutter() {
   gutter.textContent = editor.value.split('\n').map((_, i) => i + 1).join('\n');
-  gutter.scrollTop = editor.scrollTop;
+  renderHighlight();
 }
 function showTab(kind) {
   lang = kind;
@@ -131,8 +304,20 @@ function handleEdit() {
   save();
 }
 editor.addEventListener('input', handleEdit);
-editor.addEventListener('scroll', () => { gutter.scrollTop = editor.scrollTop; });
+editor.addEventListener('scroll', syncHighlightScroll);
 editor.addEventListener('keydown', event => {
+  if (event.altKey && event.code === 'KeyI') {
+    event.preventDefault();
+    const position = editor.selectionStart;
+    const token = highlightedTokens.find(item => item.help && item.start <= position && position < item.end);
+    if (token) {
+      const rect = token.element.getBoundingClientRect();
+      const bounds = editor.getBoundingClientRect();
+      showTokenHelp(token, Math.max(bounds.left, rect.left), Math.min(bounds.bottom, Math.max(bounds.top, rect.bottom)));
+    }
+    return;
+  }
+  hideTokenHelp();
   if (event.key === 'Tab' && !event.shiftKey && !event.ctrlKey && !event.metaKey) {
     event.preventDefault();
     editor.setRangeText('  ', editor.selectionStart, editor.selectionEnd, 'end');
