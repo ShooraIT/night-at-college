@@ -46,8 +46,12 @@ header{background:#231710e8}header .wrap{min-height:60px}.mark{background:linear
 .lesson-grid,.workbench-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
 .workbench-grid{grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);align-items:start;margin-top:14px}
 .lesson-grid .task{padding:20px}
+.coach-launch{margin-bottom:8px}
+.coach-launch button[aria-expanded="false"]{background:#ffc980;border-color:#ffc980;color:#3b2215;font-weight:750}
 .preview-card .bar .badge{margin-left:auto}
 .coach{display:grid;grid-template-columns:clamp(92px,15vw,160px) minmax(0,1fr);align-items:end;gap:13px;padding:15px 15px 15px 5px;background:radial-gradient(ellipse at 10% 100%,#6f4127,transparent 51%)}
+.coach-dialogue{min-width:0;align-self:center}
+.coach:has(.guide[hidden]){align-items:center}
 .coach-fox{width:100%;height:auto;align-self:end;filter:drop-shadow(0 8px 10px #1a0d0790);transform-origin:50% 95%;pointer-events:none}
 .coach .guide{position:relative;min-width:0;overflow:visible;margin:0;box-shadow:0 6px 18px #1a0d0750}
 .coach .guide::before{content:"";position:absolute;top:54px;left:-7px;width:12px;height:12px;transform:rotate(45deg);background:#fff2d9;border-bottom:1px solid #dcaf77;border-left:1px solid #dcaf77}
@@ -73,7 +77,9 @@ header{background:#231710e8}header .wrap{min-height:60px}.mark{background:linear
 <section class="card instructions"><div class="bar"><h3>Подсказка КЭШа</h3></div>
 <div class="coach task">
 <img class="coach-fox" id="coach-fox" src="fox-guide.png" width="416" height="416" alt="">
-<div class="guide" id="guide-bubble">
+<div class="coach-dialogue">
+<div class="coach-launch"><button type="button" class="ghost" id="guide-toggle" aria-controls="guide-bubble" aria-expanded="false">Спросить КЭШа</button></div>
+<div class="guide" id="guide-bubble" hidden>
   <div class="guide-body">
     <div aria-live="polite">
       <span class="guide-step" id="guide-step"></span>
@@ -83,6 +89,7 @@ header{background:#231710e8}header .wrap{min-height:60px}.mark{background:linear
     </div>
     <div class="guide-nav"><button type="button" id="guide-prev">Назад</button><button type="button" id="guide-next">Следующий шаг</button></div>
   </div>
+</div>
 </div>
 </div></section>
 </div>
@@ -218,7 +225,7 @@ const example = {
   js: findWindows + '\n\n' + clickLoop
 };
 const lessons = [
-  {lang:'html', title:'Три окна на фасаде', text:'Внутри <code>.building</code> добавь три кнопки с классами <code>window lit</code>. Класс <code>lit</code> будет обозначать свет в окне.', fail:'На фасаде должно быть минимум три окна-кнопки, и у каждого нужны классы window и lit.', pass:'Три окна готовы. Теперь им нужен стиль для включённого света.'},
+  {lang:'html', title:'Окна на фасаде', text:'Внутри <code>.building</code> добавь столько окон-кнопок, сколько хочешь, начиная с одного. У каждого окна нужны классы <code>window lit</code>. Класс <code>lit</code> обозначает свет в окне.', fail:'Добавь в .building хотя бы одну кнопку с классами window и lit. Проверь, что у каждого окна есть оба класса.', pass:'Окна готовы. Теперь им нужен стиль для включённого света.'},
   {lang:'css', title:'Свет в окнах', text:'Добавь правило <code>.window.lit</code> с жёлтым фоном и свечением. При запуске все окна должны светиться.', fail:'Проверь правило .window.lit. Фон включённого окна должен отличаться от обычного.', pass:'Окна светятся. Теперь напиши код, который гасит их по одному.'},
   {lang:'js', title:'Погаси окна по одному', text:'Добавь обработчик клика каждому окну. При клике убирай класс <code>lit</code> только у нажатого окна.', fail:'Каждый клик должен гасить только нажатое окно. Повторный клик оставляет его погашенным.', pass:'Получилось! Каждое окно гаснет отдельно и остаётся погашенным.'}
 ];
@@ -226,13 +233,13 @@ const storageKey = 'college-night-workshop-v2';
 const guideSteps = [
   [
     {title:'Найди место для окон', instruction:'Открой HTML. Найди блок ниже. Замени только строку с комментарием «Здесь будут окна», оставив теги здания на месте.', code:'\x3cdiv\n  class="building">\n  \x3c!-- Здесь будут окна -->\n\x3c/div>'},
-    {title:'Вставь три окна-кнопки', instruction:'На место комментария вставь весь фрагмент ниже. У каждого окна два класса через пробел: window описывает само окно, lit обозначает включённый свет.', code:windowButtons},
-    {title:'Проверь фасад', instruction:'Нажми «Запустить». Справа появятся три синих окна. Затем нажми «Проверить». Жёлтый свет добавим на вкладке CSS.', code:''}
+    {title:'Добавь столько окон, сколько хочешь', instruction:'Вставь этот пример на место комментария. Можно оставить одно окно, повторить блок хоть десять раз или выбрать другое количество. Для новых окон меняй номер в aria-label, а классы window и lit оставляй.', code:windowButtons},
+    {title:'Проверь фасад', instruction:'Нажми «Запустить». Все добавленные окна должны появиться справа. Затем нажми «Проверить». Жёлтый свет добавим на вкладке CSS.', code:''}
   ],
   [
     {title:'Перейди в конец CSS', instruction:'Открой CSS и прокрути редактор вниз. Новое правило нужно написать после комментария ниже, за пределами предыдущих фигурных скобок.', code:'/* Добавь стиль для .window.lit */'},
     {title:'Напиши правило для горящего окна', instruction:'Вставь этот блок в конец CSS. Между .window и .lit пробел не нужен. background отвечает за цвет, а box-shadow добавляет свечение.', code:lightStyle},
-    {title:'Убедись, что все окна горят', instruction:'Нажми «Запустить». Все три окна должны стать жёлтыми. Затем нажми «Проверить» и переходи к JavaScript.', code:''}
+    {title:'Убедись, что все окна горят', instruction:'Нажми «Запустить». Все добавленные окна должны стать жёлтыми. Затем нажми «Проверить» и переходи к JavaScript.', code:''}
   ],
   [
     {title:'Найди все окна', instruction:'Открой JS. Замени стартовый комментарий строкой ниже. Она сохраняет список окон фасада в переменную windows.', code:findWindows},
@@ -274,6 +281,8 @@ const syntaxReference = {
     button:'Кнопка, на которую можно нажать.', span:'Строчный контейнер для части текста.',
     p:'Абзац текста.', a:'Ссылка. Адрес задаётся атрибутом href.', img:'Изображение. Путь задаётся в src, описание — в alt.',
     class:'Классы элемента. В CSS они выбираются через точку.', id:'Уникальное имя элемента. В CSS оно выбирается через #.',
+    'aria-label':'Имя элемента для программ чтения с экрана. Пригодится, когда на кнопке нет видимого текста.',
+    type:'Уточняет тип элемента. Например, у обычной кнопки можно указать type="button".',
     style:'Стили, заданные прямо на элементе.', title:'Краткое описание или название.', href:'Адрес, по которому ведёт ссылка.'
   },
   css: {
@@ -311,25 +320,111 @@ const tokenHelp = byId('token-help');
 const tokenName = byId('token-name');
 const tokenDescription = byId('token-description');
 let highlightedTokens = [];
+const tokenKinds = {
+  html: {
+    tag:'HTML-тег обозначает тип и границы элемента.',
+    attribute:'Атрибут задаёт параметр HTML-элемента.',
+    string:'Значение атрибута. Кавычки позволяют записать несколько слов или классов.',
+    comment:'Комментарий для автора кода. Браузер не показывает его на странице.',
+    text:'Обычный текст HTML. Внутри элемента он становится его содержимым.'
+  },
+  css: {
+    property:'CSS-свойство определяет, какую часть оформления изменить.',
+    selector:'CSS-селектор определяет, к каким элементам применить правило.',
+    keyword:'Директива CSS. Она начинается с @ и задаёт особое правило.',
+    method:'Функция CSS вычисляет значение из параметров в скобках.',
+    literal:'Значение CSS-свойства, например способ отображения, цвет или имя шрифта.',
+    number:'Число в CSS. У размера может быть единица измерения, например px или %.',
+    string:'Текстовое значение CSS в кавычках.',
+    comment:'Комментарий к стилям. Браузер игнорирует его при оформлении.'
+  },
+  js: {
+    keyword:'Слово со специальным значением в JavaScript.',
+    method:'Имя вызываемой функции или метода. Аргументы идут в круглых скобках.',
+    identifier:'Имя переменной, параметра или другого значения в программе.',
+    property:'Имя свойства объекта. После точки оно обращается к части объекта.',
+    number:'Числовое значение.',
+    string:'Строка — текстовое значение, заключённое в кавычки.',
+    comment:'Пояснение к коду. JavaScript пропускает комментарии при выполнении.'
+  }
+};
+const punctuationHelp = {
+  html: {
+    '<':'Начинает открывающий тег.', '</':'Начинает закрывающий тег.',
+    '>':'Завершает запись тега.', '/>':'Завершает тег элемента без содержимого.',
+    '=':'Связывает имя атрибута и его значение.'
+  },
+  css: {
+    '{':'Начинает блок CSS-правила.', '}':'Заканчивает блок CSS-правила.',
+    ':':'Отделяет свойство от значения или обозначает часть селектора, например :hover.',
+    ';':'Завершает CSS-объявление.', ',':'Разделяет пункты списка, параметры функции или селекторы.',
+    '(':'Открывает список аргументов функции или условие.', ')':'Закрывает список аргументов функции или условие.',
+    '>':'Выбирает непосредственных потомков.', '+':'Выбирает следующего соседа или складывает значения в calc().',
+    '~':'В селекторе выбирает следующих соседей.', '*':'Универсальный селектор или оператор умножения в calc().',
+    '[':'Начинает условие по атрибуту.', ']':'Заканчивает условие по атрибуту.',
+    '=':'Помогает сравнить значение атрибута в селекторе.'
+  },
+  js: {
+    '{':'Открывает блок команд или литерал объекта.', '}':'Закрывает блок команд или литерал объекта.',
+    '(':'Открывает список параметров, аргументов или выражение.', ')':'Закрывает список параметров, аргументов или выражение.',
+    '[':'Начинает массив, распаковку или обращение по индексу.', ']':'Заканчивает массив, распаковку или обращение по индексу.',
+    '.':'Обращается к свойству или методу объекта.', ',':'Разделяет аргументы, элементы или объявления.',
+    ';':'Завершает команду JavaScript.', ':':'Разделяет имя и значение в объекте или части условного выражения.',
+    '=':'Присваивает значение.', '==':'Сравнивает значения с возможным приведением типов.',
+    '===':'Проверяет строгое равенство.', '!=':'Сравнивает значения на неравенство с возможным приведением типов.',
+    '!==':'Проверяет строгое неравенство.', '!':'Отрицание логического значения.',
+    '&&':'Логическое И. Правый операнд вычисляется, если левый истинный.',
+    '||':'Логическое ИЛИ. Правый операнд вычисляется, если левый ложный.',
+    '??':'Берёт значение справа, если слева null или undefined.',
+    '?.':'Обращается к свойству, только если значение слева существует.',
+    '?':'Начинает выбор значения по условию в выражении ? :.',
+    '+':'Складывает числа или соединяет строки.', '-':'Вычитает или меняет знак числа.',
+    '*':'Умножает числа.', '/':'Делит число на другое число.', '%':'Возвращает остаток от деления.',
+    '**':'Возводит число в степень.', '++':'Увеличивает значение на единицу.', '--':'Уменьшает значение на единицу.',
+    '+=':'Прибавляет или присоединяет значение и записывает результат обратно.',
+    '-=':'Вычитает значение и записывает результат обратно.',
+    '>':'Проверяет, больше ли левое значение.', '<':'Проверяет, меньше ли левое значение.',
+    '>=':'Проверяет, больше или равно ли левое значение.', '<=':'Проверяет, меньше или равно ли левое значение.',
+    '...':'Разворачивает элементы или собирает оставшиеся аргументы.'
+  }
+};
+function explainToken(value, kind, language, before) {
+  const word = language === 'js' ? value : value.toLowerCase();
+  const reference = syntaxReference[language];
+  if (!['comment','string','text','unknown'].includes(kind) && Object.hasOwn(reference, word)) return reference[word];
+
+  const punctuation = punctuationHelp[language];
+  if (kind === 'punctuation' && Object.hasOwn(punctuation, word)) return punctuation[word];
+  if (language === 'html' && value.startsWith('&')) return 'HTML-сущность. Браузер подставляет вместо неё нужный символ.';
+  if (language === 'html' && /^<!doctype/i.test(value)) return 'Объявляет тип документа. Для HTML5 используется <!doctype html>.';
+  if (language === 'css' && kind === 'number' && value.startsWith('#')) return 'Цвет в шестнадцатеричной записи. Дополнительные цифры могут задавать прозрачность.';
+  if (language === 'js' && kind === 'identifier' && /\b(?:const|let|var)\s+$/.test(before)) return 'Имя переменной, которую объявляют в этой строке.';
+  if (language === 'js' && kind === 'string' && value.startsWith('\x60')) return 'Шаблонная строка. Выражения внутри ${…} подставляются в текст.';
+  return tokenKinds[language][kind] ?? 'Символ или фрагмент кода. Его смысл зависит от окружающей конструкции.';
+}
 function syntaxTokens(source, language) {
   const tokens = [];
-  function add(index, value, kind) {
-    const word = language === 'js' ? value : value.toLowerCase();
-    const descriptions = syntaxReference[language];
-    const help = Object.hasOwn(descriptions, word) ? descriptions[word] : ({
-      tag:'HTML-тег обозначает тип и границы элемента.',
-      attribute:'Атрибут задаёт параметр HTML-элемента.',
-      property:'CSS-свойство определяет, какую часть оформления изменить.',
-      selector:'CSS-селектор определяет, к каким элементам применить правило.',
-      keyword:'Зарезервированное слово JavaScript.',
-      method:'Вызов функции с аргументами в круглых скобках.'
-    })[kind];
+  let covered = 0;
+  function push(index, value, kind) {
+    const help = explainToken(value, kind, language, source.slice(Math.max(0,index - 48),index));
     tokens.push({start:index, end:index + value.length, value, kind, help});
+  }
+  function fillGap(end, kind) {
+    for (const piece of source.slice(covered,end).matchAll(/[\p{L}\p{M}\p{N}_-]+|[^\s]/gu)) {
+      push(covered + piece.index, piece[0], kind);
+    }
+    covered = end;
+  }
+  function add(index, value, kind, gapKind = 'unknown') {
+    if (index > covered) fillGap(index, gapKind);
+    push(index, value, kind);
+    covered = index + value.length;
   }
   if (language === 'html') {
     const markup = /\x3c!--[\s\S]*?(?:-->|$)|<!doctype[^>]*>|<\/?[a-z][\w:-]*(?:[^"'<>]|"[^"]*"|'[^']*')*>?|&(?:#x?[\da-f]+|[a-z]\w*);/gi;
     for (const match of source.matchAll(markup)) {
       const value = match[0];
+      fillGap(match.index, 'text');
       if (value.startsWith('\x3c!--')) { add(match.index, value, 'comment'); continue; }
       if (value.startsWith('&') || /^<!doctype/i.test(value)) { add(match.index, value, 'punctuation'); continue; }
       const parts = [...value.matchAll(/<\/?|\/?>|"[^"]*"|'[^']*'|[\w:-]+|=/g)];
@@ -338,12 +433,14 @@ function syntaxTokens(source, language) {
         const kind = index === 1 ? 'tag' : /^['"]/.test(piece) ? 'string' : /^[\w:-]+$/.test(piece) ? (parts[index-1]?.[0] === '=' ? 'string' : 'attribute') : 'punctuation';
         add(match.index + part.index, piece, kind);
       });
+      fillGap(match.index + value.length, 'unknown');
     }
+    fillGap(source.length, 'text');
     return tokens;
   }
   const pattern = language === 'css'
-    ? /\/\*[\s\S]*?(?:\*\/|$)|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|#[0-9a-f]{3,8}\b(?![\w-])|(?:\.[a-z_-][\w-]*)+|#[\w-]+|@[\w-]+|(?:\d*\.)?\d+(?:[a-z]+|%)?|--[\w-]+|[a-z_][\w-]*|[{}:;()[\],>+~*=]/gi
-    : /\/\/[^\n]*|\/\*[\s\S]*?(?:\*\/|$)|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|[\x60](?:\\.|[^\x60\\])*[\x60]|\b(?:0[xob][\da-f]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)n?\b|[$a-z_][$\w]*|=>|===?|!==?|\?\?|\?\.|&&|\|\||[{}()[\].,;:+\-*/%=!?<>]/gi;
+    ? /\/\*[\s\S]*?(?:\*\/|$)|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|#[-\p{L}\p{N}_]+|(?:\.[-\p{L}_][-\p{L}\p{N}_]*)+|@[-\p{L}\p{N}_]+|(?:\d*\.)?\d+(?:[a-z]+|%)?|[-\p{L}_][-\p{L}\p{N}_]*|[{}:;()[\],>+~*=]/giu
+    : /\/\/[^\n]*|\/\*[\s\S]*?(?:\*\/|$)|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|[\x60](?:\\.|[^\x60\\])*[\x60]|\b(?:0[xob][\da-f]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)n?\b|[$_\p{ID_Start}][$_\p{ID_Continue}]*|=>|===?|!==?|<=|>=|\?\?|\?\.|&&|\|\||\.\.\.|\+\+|--|\+=|-=|\*\*|[{}()[\].,;:+\-*/%=!?<>]/giu;
   for (const match of source.matchAll(pattern)) {
     const value = match[0];
     const end = match.index + value.length;
@@ -354,13 +451,18 @@ function syntaxTokens(source, language) {
     else if (language === 'css') {
       const next = source.slice(end, end + 300);
       if (value.startsWith('@')) kind = 'keyword';
-      else if (/^[.#a-z_-]/i.test(value) && /^[^;{}]*\{/.test(next)) kind = 'selector';
+      else if (/^[.#_\p{L}-]/u.test(value) && /^[^;{}]*\{/.test(next)) kind = 'selector';
       else if (/^#[0-9a-f]{3,8}$/i.test(value)) kind = 'number';
-      else if (/^(?:--|[a-z_])/i.test(value)) kind = /^\s*:/.test(next) ? 'property' : /^\s*\(/.test(next) ? 'method' : 'literal';
+      else if (/^[-_\p{L}]/u.test(value)) kind = /^\s*:/.test(next) ? 'property' : /^\s*\(/.test(next) ? 'method' : 'literal';
     } else if (jsKeywords.has(value) || value === '=>') kind = 'keyword';
-    else if (/^[$a-z_]/i.test(value)) kind = /^\s*\(/.test(source.slice(end, end + 100)) ? 'method' : 'identifier';
+    else if (/^[$_\p{ID_Start}]/u.test(value)) {
+      const callable = /^\s*\(/.test(source.slice(end, end + 100));
+      const member = /\.\s*$/.test(source.slice(Math.max(0,match.index - 24),match.index));
+      kind = callable ? 'method' : member ? 'property' : 'identifier';
+    }
     add(match.index, value, kind);
   }
+  fillGap(source.length, 'unknown');
   return tokens;
 }
 function hideTokenHelp() {
@@ -385,7 +487,7 @@ function renderHighlight() {
     span.className = 'syntax-' + token.kind;
     span.textContent = token.value;
     fragment.append(span);
-    if (token.help) token.element = span;
+    token.element = span;
     offset = token.end;
   }
   fragment.append(source.slice(offset) + '\n');
@@ -393,7 +495,8 @@ function renderHighlight() {
   syncHighlightScroll();
 }
 function showTokenHelp(token, x, y) {
-  tokenName.textContent = token.value;
+  const label = token.value.replace(/\s+/g, ' ').trim();
+  tokenName.textContent = label.length > 60 ? label.slice(0, 59) + '…' : label;
   tokenDescription.textContent = token.help;
   tokenHelp.hidden = false;
   const left = Math.max(8, Math.min(x + 12, window.innerWidth - tokenHelp.offsetWidth - 8));
@@ -407,7 +510,7 @@ editor.addEventListener('pointermove', event => {
   const bounds = editor.getBoundingClientRect();
   if (x >= bounds.left + editor.clientWidth || y >= bounds.top + editor.clientHeight) { hideTokenHelp(); return; }
   const token = highlightedTokens.find(item => item.element && [...item.element.getClientRects()].some(rect =>
-    x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom));
+    x >= rect.left && x < rect.right && y >= rect.top && y < rect.bottom));
   if (token) showTokenHelp(token, x, y);
   else hideTokenHelp();
 });
@@ -443,6 +546,7 @@ function showLesson(index) {
   byId('task-title').textContent = task.title;
   byId('task-text').innerHTML = task.text;
   guideStep = 0;
+  setGuideOpen(false);
   renderGuide();
   feedback('', '');
   renderProgress();
@@ -464,7 +568,7 @@ function renderGuide() {
   byId('guide-prev').disabled = guideStep === 0;
   byId('guide-next').disabled = guideStep === sequence.length - 1;
   guideMotion.forEach(motion => motion.cancel());
-  if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
+  if (byId('guide-bubble').hidden || window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
   guideMotion = [
     byId('coach-fox').animate?.([
       {transform:'translateY(0) rotate(0)'},
@@ -479,6 +583,16 @@ function renderGuide() {
 }
 byId('guide-prev').onclick = () => { guideStep--; renderGuide(); };
 byId('guide-next').onclick = () => { guideStep++; renderGuide(); };
+function setGuideOpen(open) {
+  byId('guide-bubble').hidden = !open;
+  if (!open) guideMotion.forEach(motion => motion.cancel());
+  byId('guide-toggle').setAttribute('aria-expanded', String(open));
+  byId('guide-toggle').textContent = open ? 'Скрыть подсказки' : 'Спросить КЭШа';
+}
+byId('guide-toggle').onclick = () => {
+  setGuideOpen(byId('guide-bubble').hidden);
+  if (!byId('guide-bubble').hidden) renderGuide();
+};
 function handleEdit() {
   draft[lang] = editor.value;
   updateGutter();
@@ -546,7 +660,7 @@ function frameMain(payload) {
   if (payload.check === null) return;
   const windows = [...document.querySelectorAll('.building .window')];
   const lit = win => win.classList.contains('lit');
-  let passed = windows.length >= 3 && windows.every(win => win.tagName === 'BUTTON' && lit(win));
+  let passed = windows.length > 0 && windows.every(win => win.tagName === 'BUTTON' && lit(win));
   if (payload.check === 1) {
     const snapshot = windows.map(win => win.classList.contains('lit'));
     const colors = windows.map(win => { win.classList.remove('lit'); return getComputedStyle(win).backgroundColor; });
